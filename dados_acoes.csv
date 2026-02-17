@@ -1,0 +1,504 @@
+Símbolo,Setor,Indústria,Preço Atual,Preço Máximo 52 Semanas,Preço Mínimo 52 Semanas,Volume Médio Diário
+NVDA,Technology,Semiconductors,183.9025,212.19,86.62,184341170
+AAPL,Technology,Consumer Electronics,260.33,288.62,169.21,60052330
+MSFT,Technology,Software - Infrastructure,399.76,555.45,344.79,47613390
+AMZN,Consumer Cyclical,Internet Retail,201.12,258.6,161.38,79948750
+GOOGL,Communication Services,Internet Content & Information,302.01,349.0,140.53,49416030
+GOOG,Communication Services,Internet Content & Information,302.6601,350.15,142.66,29507480
+META,Communication Services,Internet Content & Information,637.72,796.25,479.8,14719370
+AVGO,Technology,Semiconductors,330.72,414.61,138.1,28032770
+TSLA,Consumer Cyclical,Auto Manufacturers,407.9501,498.83,214.25,61531090
+BRK.B,,,0.0,0.0,0.0,0
+WMT,Consumer Defensive,Discount Stores,130.31,134.69,79.81,27647050
+LLY,Healthcare,Drug Manufacturers - General,1048.6301,1133.95,623.78,4384290
+JPM,Financial Services,Banks - Diversified,307.1599,337.25,202.16,11219980
+V,Financial Services,Credit Services,320.21,375.51,299.0,8581630
+XOM,Energy,Oil & Gas Integrated,146.255,156.93,97.8,24138380
+JNJ,Healthcare,Drug Manufacturers - General,242.385,246.35,141.5,9114220
+MA,Financial Services,Credit Services,523.6659,601.77,465.59,4066540
+MU,Technology,Semiconductors,410.575,455.5,61.54,40898480
+COST,Consumer Defensive,Discount Stores,1014.0,1071.0,844.06,2443450
+ORCL,Technology,Software - Infrastructure,156.12,345.72,118.86,36218110
+ABBV,Healthcare,Drug Manufacturers - General,232.6,244.81,164.39,8360110
+BAC,Financial Services,Banks - Diversified,53.105,57.55,33.07,42228140
+HD,Consumer Cyclical,Home Improvement Retail,384.24,426.75,326.31,4106900
+PG,Consumer Defensive,Household & Personal Products,159.84,179.99,137.62,11775660
+CAT,Industrials,Farm & Heavy Construction Machinery,766.6053,789.81,267.3,3978660
+CVX,Energy,Oil & Gas Integrated,179.8,186.52,132.04,11789530
+GE,Industrials,Aerospace & Defense,328.87,332.79,159.36,5328510
+KO,Consumer Defensive,Beverages - Non-Alcoholic,78.95,80.41,65.35,23272920
+AMD,Technology,Semiconductors,202.595,267.08,76.48,46907120
+NFLX,Communication Services,Entertainment,76.685,134.115,75.23,48353840
+PLTR,Technology,Software - Infrastructure,132.5,207.52,66.12,74583710
+CSCO,Technology,Communication Equipment,77.3,88.19,52.11,35158900
+MRK,Healthcare,Drug Manufacturers - General,121.81,123.33,73.31,16528990
+LRCX,Technology,Semiconductor Equipment & Materials,236.99,251.87,56.32,11919110
+PM,Consumer Defensive,Tobacco,184.3311,190.98,142.11,6420960
+AMAT,Technology,Semiconductor Equipment & Materials,359.172,376.32,123.74,9655430
+GS,Financial Services,Capital Markets,914.88,984.7,439.38,2748680
+MS,Financial Services,Capital Markets,172.1,192.68,94.33,9171850
+WFC,Financial Services,Banks - Diversified,88.02,97.76,58.42,15560100
+RTX,Industrials,Aerospace & Defense,202.09,206.48,112.27,6457580
+UNH,Healthcare,Healthcare Plans,291.0,606.36,234.6,10161960
+TMUS,Communication Services,Telecom Services,221.2551,276.49,181.36,8248530
+IBM,Technology,Information Technology Services,258.8825,324.9,214.5,6953160
+AXP,Financial Services,Credit Services,344.71,387.49,220.43,3319550
+MCD,Consumer Cyclical,Restaurants,327.2554,335.67,283.47,3974150
+INTC,Technology,Semiconductors,46.395,54.6,17.67,104248930
+LIN,Basic Materials,Specialty Chemicals,481.82,488.54,387.78,3185170
+GEV,Industrials,Specialty Industrial Machinery,822.68,846.0,252.25,3296280
+PEP,Consumer Defensive,Beverages - Non-Alcoholic,161.78,171.48,127.6,11528350
+VZ,Communication Services,Telecom Services,49.065,50.24,38.39,44617380
+TXN,Technology,Semiconductors,227.45,231.32,139.95,9834930
+T,Communication Services,Telecom Services,28.755,29.79,22.95,50763420
+AMGN,Healthcare,Drug Manufacturers - General,372.9832,385.12,261.43,3367140
+C,Financial Services,Banks - Diversified,113.65,125.16,55.51,14826540
+ABT,Healthcare,Medical Devices,112.52,141.23,105.27,11350720
+NEE,Utilities,Utilities - Regulated Electric,93.505,95.56,61.72,8986130
+KLAC,Technology,Semiconductor Equipment & Materials,1480.02,1693.35,551.33,1375510
+GILD,Healthcare,Drug Manufacturers - General,153.982,157.29,93.37,8522400
+BA,Industrials,Aerospace & Defense,243.43,254.35,128.88,6438560
+TMO,Healthcare,Diagnostics & Research,504.845,643.99,385.46,2838110
+DIS,Communication Services,Entertainment,105.395,124.69,80.1,17350390
+ANET,Technology,Computer Hardware,142.85,164.94,59.43,10587900
+APH,Technology,Electronic Components,146.25,167.04,56.45,12234810
+ISRG,Healthcare,Medical Instruments & Supplies,493.93,609.08,425.0,2567420
+CRM,Technology,Software - Application,185.145,329.74,180.24,16028670
+TJX,Consumer Cyclical,Apparel Retail,154.265,159.48,112.1,5773500
+BLK,Financial Services,Asset Management,1073.24,1219.94,773.74,892130
+SCHW,Financial Services,Capital Markets,93.0,107.5,65.88,16454110
+ADI,Technology,Semiconductors,336.175,343.96,158.65,4594400
+DE,Industrials,Farm & Heavy Construction Machinery,605.485,626.25,404.42,1859600
+LOW,Consumer Cyclical,Home Improvement Retail,280.98,293.06,206.39,2802060
+UNP,Industrials,Railroads,263.365,265.37,204.66,4713210
+PFE,Healthcare,Drug Manufacturers - General,27.38,27.94,20.92,58096640
+HON,Industrials,Conglomerates,243.35,245.63,169.04807,4693700
+ETN,Industrials,Specialty Industrial Machinery,391.625,408.45,231.85,3654890
+QCOM,Technology,Semiconductors,141.91,205.95,120.8,14129550
+LMT,Industrials,Aerospace & Defense,649.89,656.34,410.11,1676530
+WELL,Real Estate,REIT - Healthcare Facilities,214.1,214.27,130.29,3614690
+UBER,Technology,Software - Application,70.45,101.99,60.63,29357050
+DHR,Healthcare,Diagnostics & Research,205.77,242.8,171.0,4435760
+SYK,Healthcare,Medical Devices,372.955,404.87,329.16,2401480
+ACN,Technology,Information Technology Services,220.065,392.02,215.16,6519890
+COP,Energy,Oil & Gas E&P,108.93,112.95,79.88,8435430
+NEM,Basic Materials,Gold,121.94,134.88,41.23,9928810
+BKNG,Consumer Cyclical,Travel Services,4096.32,5839.41,4020.54,560770
+PANW,Technology,Software - Infrastructure,163.005,223.61,144.15,17502410
+PLD,Real Estate,REIT - Industrial,140.7301,141.95,85.35,3294370
+COF,Financial Services,Credit Services,207.32,259.64,143.22,5075900
+CB,Financial Services,Insurance - Property & Casualty,330.145,335.6,263.14,2024780
+APP,Communication Services,Advertising Agencies,380.375,745.61,200.5,9877920
+PH,Industrials,Specialty Industrial Machinery,1010.15,1012.49,488.45,729120
+MDT,Healthcare,Medical Devices,97.0,106.33,79.55,9509420
+SPGI,Financial Services,Financial Data & Stock Exchanges,413.585,579.05,381.61,5365550
+VRTX,Healthcare,Biotechnology,480.24,519.68,362.5,1697230
+BMY,Healthcare,Drug Manufacturers - General,59.735,63.33,42.52,14615090
+PGR,Financial Services,Insurance - Property & Casualty,206.84,292.99,197.92,3746640
+HCA,Healthcare,Medical Care Facilities,537.37,552.9,295.0,1175570
+MCK,Healthcare,Medical Distribution,946.575,971.93,585.23,1145480
+GLW,Technology,Electronic Components,132.78,136.83,37.31,11974060
+CMCSA,Communication Services,Telecom Services,31.69,35.595127,24.133083,31719070
+BSX,Healthcare,Medical Devices,76.06,109.5,72.69,27985890
+MO,Consumer Defensive,Tobacco,66.355,68.6,52.46,10654010
+CEG,Utilities,Utilities - Independent Power Producers,304.31,412.7,161.35,4809750
+NOW,Technology,Software - Application,105.58,211.478,98.0,28228230
+CME,Financial Services,Financial Data & Stock Exchanges,302.9,309.35,244.43,2642620
+SBUX,Consumer Cyclical,Restaurants,94.71,117.46,75.5,8208580
+ADBE,Technology,Software - Application,258.95,464.33,251.1,6927740
+INTU,Technology,Software - Application,381.02,813.7,376.53,5049260
+TT,Industrials,Building Products & Equipment,466.98,479.37,298.15,1546570
+SO,Utilities,Utilities - Regulated Electric,93.59,100.84,83.09,6990590
+CRWD,Technology,Software - Infrastructure,409.32,566.9,298.0,3709170
+HWM,Industrials,Aerospace & Defense,254.225,256.7,105.04,3334170
+BX,Financial Services,Asset Management,129.405,190.09,115.66,8953100
+CVS,Healthcare,Healthcare Plans,78.6964,85.15,58.35,9397240
+NOC,Industrials,Aerospace & Defense,703.74,715.61,426.24,941270
+DUK,Utilities,Utilities - Regulated Electric,127.2,130.03,110.51,5229940
+UPS,Industrials,Integrated Freight & Logistics,116.56,123.7,82.0,7395450
+WDC,Technology,Computer Hardware,285.015,307.5,28.83,12028590
+WM,Industrials,Waste Management,237.86,242.58,194.11,2377130
+MAR,Consumer Cyclical,Lodging,360.38,370.0,205.4,1939800
+NKE,Consumer Cyclical,Footwear & Accessories,63.63,82.44,52.28,14896970
+EQIX,Real Estate,REIT - Specialty,954.74,992.9,701.41,818340
+PNC,Financial Services,Banks - Regional,231.89,243.94,145.12,2823180
+GD,Industrials,Aerospace & Defense,343.24,369.7,239.2,1448040
+STX,Technology,Computer Hardware,421.44,459.84,63.19,4715320
+SNDK,Technology,Computer Hardware,618.405,725.0,27.885,23661290
+SHW,Basic Materials,Specialty Chemicals,368.67,379.65,308.84,2070410
+KKR,Financial Services,Asset Management,102.24,153.87,86.15,10752340
+USB,Financial Services,Banks - Regional,58.3599,61.19,35.18,12725020
+AMT,Real Estate,REIT - Specialty,192.435,234.33,166.88,3407410
+MMM,Industrials,Conglomerates,169.92,177.41,121.98,4647000
+FDX,Industrials,Integrated Freight & Logistics,377.17,381.72,194.3,2400800
+RCL,Consumer Cyclical,Travel Services,325.515,366.5,164.01,2094210
+WMB,Energy,Oil & Gas Midstream,71.85,73.04,51.58,10097170
+FCX,Basic Materials,Copper,60.825,69.44,27.66,20644390
+ICE,Financial Services,Financial Data & Stock Exchanges,153.58,189.35,143.17,6164080
+ITW,Industrials,Specialty Industrial Machinery,298.24,303.16,214.66,2125540
+JCI,Industrials,Building Products & Equipment,141.07,143.17,68.03,6348110
+ECL,Basic Materials,Specialty Chemicals,303.0,306.52,221.62,1542220
+ADP,Technology,Software - Application,211.71,329.93,208.62,4075240
+MRSH,Financial Services,Insurance Brokers,175.7351,248.0,170.37,3837560
+EMR,Industrials,Specialty Industrial Machinery,149.23,165.15,90.06,5707160
+REGN,Healthcare,Biotechnology,791.42,821.11,476.49,835360
+CMI,Industrials,Specialty Industrial Machinery,595.7509,617.98,260.02,1442380
+BK,Financial Services,Banks - Diversified,119.245,128.76,70.46,4265070
+CRH,Basic Materials,Building Materials,122.295,131.55,76.75,4421980
+SNPS,Technology,Software - Infrastructure,420.66,651.73,365.74,2936150
+MNST,Consumer Defensive,Beverages - Non-Alcoholic,82.325,83.24,48.95,7231460
+PWR,Industrials,Engineering & Construction,533.51,543.28,227.08,1191810
+ORLY,Consumer Cyclical,Auto Parts,94.34,108.72,85.552,7468240
+CDNS,Technology,Software - Application,290.6,376.45,221.56,3458020
+CTAS,Industrials,Specialty Business Services,195.15,229.24,180.39,2193160
+CL,Consumer Defensive,Household & Personal Products,96.18,100.18,74.55,7475990
+DELL,Technology,Computer Hardware,116.895,168.08,66.25,8379270
+MSI,Technology,Communication Equipment,467.77,492.22,359.36,1376200
+CI,Healthcare,Healthcare Plans,292.665,350.0,239.51,2266300
+MDLZ,Consumer Defensive,Confectioners,59.725,71.15,51.2,13319190
+ELV,Healthcare,Healthcare Plans,346.15,458.75,273.71,1722390
+CSX,Industrials,Railroads,40.82,41.79,26.22,14122830
+MCO,Financial Services,Financial Data & Stock Exchanges,425.59,546.88,378.71,2282450
+ABNB,Consumer Cyclical,Travel Services,125.66,162.576,99.88,6228900
+SLB,Energy,Oil & Gas Equipment & Services,49.705,52.4,31.11,20252980
+HLT,Consumer Cyclical,Lodging,319.0,333.86,196.04,2545600
+TDG,Industrials,Aerospace & Defense,1296.15,1623.83,1183.6,552960
+GM,Consumer Cyclical,Auto Manufacturers,80.51,87.62,41.6,7991020
+APO,Financial Services,Asset Management,125.405,164.22,102.58,5813910
+WBD,Communication Services,Entertainment,28.775,30.0,7.52,24128910
+KMI,Energy,Oil & Gas Midstream,31.99,32.57,23.94,14180580
+NSC,Industrials,Railroads,316.42,319.94,201.63,1359540
+AEP,Utilities,Utilities - Regulated Electric,130.61,132.78,97.46,3915970
+DASH,Consumer Cyclical,Internet Retail,163.78,285.5,155.4,6205730
+COR,Healthcare,Medical Distribution,360.71,377.54,237.71,1670440
+RSG,Industrials,Waste Management,224.715,258.75,201.42,1531160
+AON,Financial Services,Insurance Brokers,323.485,412.97,304.59,2251930
+TEL,Technology,Electronic Components,232.98,250.67,116.3,2741840
+HOOD,Financial Services,Capital Markets,75.98,153.86,29.66,52273460
+PCAR,Industrials,Farm & Heavy Construction Machinery,127.495,131.88,84.65,3759640
+TFC,Financial Services,Banks - Regional,52.305,56.2,33.56,10603230
+SPG,Real Estate,REIT - Retail,199.3,201.4,136.34,1925750
+LHX,Industrials,Aerospace & Defense,347.14,369.59,193.09,1246690
+EOG,Energy,Oil & Gas E&P,119.26,135.87,101.59,5172060
+TRV,Financial Services,Insurance - Property & Casualty,298.84,304.4,230.43,1943250
+PSX,Energy,Oil & Gas Refining & Marketing,158.36,163.79,91.01,2624320
+ROST,Consumer Cyclical,Apparel Retail,196.785,198.9799,122.36,2431940
+AZO,Consumer Cyclical,Auto Parts,3780.475,4388.11,3210.72,140800
+APD,Basic Materials,Specialty Chemicals,278.4,321.47,229.11,1432920
+DLR,Real Estate,REIT - Specialty,180.185,184.79,129.95,2447930
+FTNT,Technology,Software - Infrastructure,82.54,114.82,70.12,9183450
+SRE,Utilities,Utilities - Diversified,93.75,95.74,61.9,4542410
+NXPI,Technology,Semiconductors,242.8,256.36,148.09,4172590
+O,Real Estate,REIT - Retail,66.255,66.365,50.71,7038650
+VLO,Energy,Oil & Gas Refining & Marketing,198.185,206.77,99.0,3027800
+AFL,Financial Services,Insurance - Life,115.25,119.32,96.95,2644520
+VST,Utilities,Utilities - Independent Power Producers,176.22,219.82,90.51,6964100
+BKR,Energy,Oil & Gas Equipment & Services,59.94,62.27,33.6,9965240
+MPC,Energy,Oil & Gas Refining & Marketing,200.055,210.32,115.1,2561500
+MPWR,Technology,Semiconductors,1171.94,1250.0,438.86,857970
+D,Utilities,Utilities - Regulated Electric,66.32,67.5699,48.07,5397250
+F,Consumer Cyclical,Auto Manufacturers,14.055,14.5,8.44,82749560
+CARR,Industrials,Building Products & Equipment,66.69,81.09,50.24,9821430
+URI,Industrials,Rental & Leasing Services,867.41,1021.47,525.91,861200
+AJG,Financial Services,Insurance Brokers,212.62,351.23,195.0,3449700
+ALL,Financial Services,Insurance - Property & Casualty,209.69,216.75,176.0,2022710
+GWW,Industrials,Industrial Distribution,1135.4,1218.63,893.99,441570
+OKE,Energy,Oil & Gas Midstream,85.415,103.64,64.02,4497530
+ZTS,Healthcare,Drug Manufacturers - Specialty & Generic,126.795,177.0,115.25,5098560
+AME,Industrials,Specialty Industrial Machinery,231.255,239.94,145.02,1700380
+FAST,Industrials,Industrial Distribution,46.255,50.63,35.305,10202360
+CAH,Healthcare,Medical Distribution,224.4,230.81,120.72,2033630
+PSA,Real Estate,REIT - Industrial,299.995,322.49,256.54,1212490
+TGT,Consumer Defensive,Discount Stores,115.146,131.7,83.44,7089580
+CTVA,Basic Materials,Agricultural Inputs,75.56,77.41,53.4,4763670
+MET,Financial Services,Insurance - Life,77.455,87.39,65.21,4731440
+BDX,Healthcare,Medical Instruments & Supplies,177.3199,185.01572,127.58648,4335618
+IDXX,Healthcare,Diagnostics & Research,628.72,769.98,356.14,612000
+EA,Communication Services,Electronic Gaming & Multimedia,199.55,204.89,128.02,4426400
+CMG,Consumer Cyclical,Restaurants,37.725,58.42,29.75,24933060
+TER,Technology,Semiconductor Equipment & Materials,311.94,327.99,65.77,5400440
+CVNA,Consumer Cyclical,Auto & Truck Dealerships,344.59,486.89,148.25,3820100
+EXC,Utilities,Utilities - Regulated Electric,48.1651,49.09,41.71,10593620
+TRGP,Energy,Oil & Gas Midstream,224.55,225.91,144.14,1329870
+XEL,Utilities,Utilities - Regulated Electric,81.24,83.01,65.21,5674400
+ADSK,Technology,Software - Application,226.59,329.09,216.01,2808150
+FIX,Industrials,Engineering & Construction,1362.82,1399.0,276.44,398360
+DHI,Consumer Cyclical,Residential Construction,165.23,184.55,110.44,3413980
+FITB,Financial Services,Banks - Regional,53.11,55.44,32.25,14557100
+ETR,Utilities,Utilities - Regulated Electric,105.19,106.7099,75.57,3380260
+FANG,Energy,Oil & Gas E&P,166.19,172.8,114.0,2029180
+DAL,Industrials,Airlines,70.86,76.39,34.74,9028220
+EW,Healthcare,Medical Devices,79.51,87.89,65.94,6178310
+COIN,Financial Services,Financial Data & Stock Exchanges,169.9,444.65,139.36,17662660
+NDAQ,Financial Services,Financial Data & Stock Exchanges,80.21,101.79,64.84,8375120
+CCL,Consumer Cyclical,Travel Services,32.705,34.03,15.07,22604320
+OXY,Energy,Oil & Gas E&P,45.545,52.58,34.78,11098520
+WAB,Industrials,Railroads,260.18,262.4,151.81,1112130
+YUM,Consumer Cyclical,Restaurants,160.19,165.32,137.33,2376990
+KR,Consumer Defensive,Grocery Stores,70.125,74.9,58.6,7807250
+HSY,Consumer Defensive,Confectioners,215.405,234.87,150.04,2994010
+PEG,Utilities,Utilities - Regulated Electric,87.15,91.26,74.67,2686500
+DDOG,Technology,Software - Application,123.38,201.69,81.63,8312590
+AMP,Financial Services,Asset Management,474.385,552.43,396.14,933160
+ROK,Industrials,Specialty Industrial Machinery,383.63,438.72,215.0,1555620
+SYY,Consumer Defensive,Food Distribution,89.66,91.755,67.12,4684210
+MCHP,Technology,Semiconductors,78.82,83.35,34.13,12105160
+CIEN,Technology,Communication Equipment,300.82,308.81,49.21,6414830
+AIG,Financial Services,Insurance - Diversified,78.805,88.07,71.25,4447940
+NUE,Basic Materials,Steel,181.945,196.9,97.59,2004960
+CBRE,Real Estate,Real Estate Services,140.945,174.27,108.45,3724490
+GRMN,Technology,Scientific & Technical Instruments,216.35,261.69,169.26,1026270
+ED,Utilities,Utilities - Regulated Electric,114.35,115.14,94.5,2010810
+VTR,Real Estate,REIT - Healthcare Facilities,85.99,87.2,60.15,3595560
+VMC,Basic Materials,Building Materials,306.41,331.09,215.08,1263670
+MLM,Basic Materials,Building Materials,666.21,710.97,441.95,595270
+ODFL,Industrials,Trucking,192.65,209.61,126.01,3617190
+KEYS,Technology,Scientific & Technical Instruments,233.785,242.62,121.43,1149360
+PCG,Utilities,Utilities - Regulated Electric,18.14,18.38,12.97,24102390
+CCI,Real Estate,REIT - Specialty,91.45,115.76,77.01,5067550
+EL,Consumer Defensive,Household & Personal Products,110.24,121.64,48.37,6299830
+HIG,Financial Services,Insurance - Diversified,143.22,144.5,107.49,1763160
+KDP,Consumer Defensive,Beverages - Non-Alcoholic,29.145,36.12,25.03,10532780
+IR,Industrials,Specialty Industrial Machinery,99.41,100.96,65.61,7149140
+LVS,Consumer Cyclical,Resorts & Casinos,57.27,70.45,30.18,5985560
+MSCI,Financial Services,Financial Data & Stock Exchanges,524.18,626.28,486.74,1066140
+NRG,Utilities,Utilities - Independent Power Producers,176.94,180.54,79.57,2292590
+PYPL,Financial Services,Credit Services,41.32,79.5,38.46,42835830
+WEC,Utilities,Utilities - Regulated Electric,116.34,118.19,100.61,3025040
+WDAY,Technology,Software - Application,143.0819,281.0,139.91,5799770
+RMD,Healthcare,Medical Instruments & Supplies,257.03,293.81,199.92,1462550
+GEHC,Healthcare,Medical Devices,81.955,93.26,57.65,4248100
+UAL,Industrials,Airlines,113.18,119.21,52.0,6126050
+LYV,Communication Services,Entertainment,156.595,175.25,112.88,2777190
+EBAY,Consumer Cyclical,Internet Retail,80.04,101.15,58.71,6056770
+CPRT,Industrials,Specialty Business Services,37.415,63.85,36.52,9218000
+OTIS,Industrials,Specialty Industrial Machinery,92.65,106.828,84.003,4566180
+TTWO,Communication Services,Electronic Gaming & Multimedia,194.17,264.79,188.56,4252840
+KMB,Consumer Defensive,Household & Personal Products,108.43,150.45,96.26,6076080
+EME,Industrials,Engineering & Construction,799.555,835.0,320.89,388850
+PRU,Financial Services,Insurance - Life,102.95,119.76,90.38,3229190
+EQT,Energy,Oil & Gas E&P,57.3,62.23,43.57,8103710
+STT,Financial Services,Asset Management,128.23,137.05,72.81,1996600
+ACGL,Financial Services,Insurance - Diversified,99.37,103.39,82.45,2141520
+KVUE,Consumer Defensive,Household & Personal Products,18.575,25.17,14.02,68469020
+MTB,Financial Services,Banks - Regional,229.2,239.0,150.75,1427730
+HBAN,Financial Services,Banks - Regional,17.2888,19.46,11.92,39660580
+A,Healthcare,Diagnostics & Research,124.06,160.27,96.43,2070940
+AXON,Industrials,Aerospace & Defense,431.97,885.92,396.41,1435090
+PAYX,Technology,Software - Application,94.46,161.24,91.7,4714310
+ROP,Technology,Software - Application,317.135,595.17,313.65,2385530
+FISV,,,62.66,238.59,57.79,11417900
+DG,Consumer Defensive,Discount Stores,148.81,154.75,70.01,2739380
+IBKR,Financial Services,Capital Markets,72.81,79.18,32.82,5848850
+ADM,Consumer Defensive,Farm Products,67.34,70.09,40.98,4438330
+IRM,Real Estate,REIT - Specialty,109.3,111.63,72.33,2598060
+FICO,Technology,Software - Application,1353.91,2217.6,1280.86,386510
+DOV,Industrials,Specialty Industrial Machinery,233.005,237.54,143.04,1652610
+XYL,Industrials,Specialty Industrial Machinery,129.62,154.27,100.47,2468670
+VICI,Real Estate,REIT - Diversified,29.415,34.03,27.48,9955100
+CTSH,Technology,Information Technology Services,65.4,90.0,65.0,9297040
+RJF,Financial Services,Asset Management,158.75,177.66,117.57,1877040
+EXR,Real Estate,REIT - Industrial,147.13,162.77,121.03,1470490
+TPR,Consumer Cyclical,Luxury Goods,152.82,158.28,58.39,3351390
+AEE,Utilities,Utilities - Regulated Electric,111.52,112.655,91.77,2338180
+ULTA,Consumer Cyclical,Specialty Retail,694.35,700.81,309.01,496120
+XYZ,Technology,Software - Infrastructure,50.55,85.55,44.27,9661040
+WAT,Healthcare,Diagnostics & Research,312.625,414.15,275.05,1997770
+TDY,Technology,Scientific & Technical Instruments,653.0,674.63,419.0,413000
+DTE,Utilities,Utilities - Regulated Electric,146.48,154.63,123.69,1716530
+CHTR,Communication Services,Telecom Services,235.87,437.06,180.38,2524410
+ATO,Utilities,Utilities - Regulated Gas,180.26,181.01,141.59,1533210
+CBOE,Financial Services,Financial Data & Stock Exchanges,283.79,283.97,200.88,1058990
+LEN,Consumer Cyclical,Residential Construction,120.26,144.24,98.42,2857420
+HPE,Technology,Communication Equipment,22.195,26.44,11.965,19479390
+TPL,Energy,Oil & Gas E&P,428.7404,487.59332,269.23334,500570
+PPG,Basic Materials,Specialty Chemicals,129.785,133.43,90.24,2188230
+ROL,Consumer Cyclical,Personal Services,59.91,66.14,49.73,4508370
+ARES,Financial Services,Asset Management,130.74,195.26,110.63,5534160
+BIIB,Healthcare,Drug Manufacturers - General,195.985,202.41,110.04,1884520
+FE,Utilities,Utilities - Regulated Electric,49.77,50.44,37.58,5837570
+ON,Technology,Semiconductors,71.86,73.63,31.04,12435720
+KHC,Consumer Defensive,Packaged Foods,23.745,33.35,21.985,17795490
+PPL,Utilities,Utilities - Regulated Electric,37.935,38.27,32.5,11699960
+HAL,Energy,Oil & Gas Equipment & Services,33.5475,35.55,18.72,12819960
+STLD,Basic Materials,Steel,191.225,208.47,103.17,1580560
+CNP,Utilities,Utilities - Regulated Electric,42.75,43.085,33.24,6039530
+CFG,Financial Services,Banks - Regional,64.96,68.79,32.6,5558760
+HUBB,Industrials,Electrical Equipment & Parts,524.02,533.8,299.425,826562
+WTW,Financial Services,Insurance Brokers,293.47,352.79,275.6,1671980
+IQV,Healthcare,Diagnostics & Research,163.795,247.05,134.65,3857160
+TSCO,Consumer Cyclical,Specialty Retail,52.3,63.99,46.85,6129180
+EIX,Utilities,Utilities - Regulated Electric,71.82,72.68,47.73,3424240
+MTD,Healthcare,Diagnostics & Research,1356.695,1525.17,946.69,165580
+ES,Utilities,Utilities - Regulated Electric,73.35,75.25,52.28,2998530
+NTRS,Financial Services,Asset Management,146.18,157.6,81.62,1254850
+DVN,Energy,Oil & Gas E&P,43.905,45.29,25.89,13436280
+DXCM,Healthcare,Medical Devices,70.455,93.25,54.11,6038060
+JBL,Technology,Electronic Components,255.29,269.17,108.66,1044600
+PHM,Consumer Cyclical,Residential Construction,140.435,144.495,88.07,2071400
+WRB,Financial Services,Insurance - Property & Casualty,71.21,78.96,59.55,2079700
+STZ,Consumer Defensive,Beverages - Brewers,154.43,196.91,126.45,2651100
+LUV,Industrials,Airlines,54.11,54.7,23.82,10863920
+SW,Consumer Cyclical,Packaging & Containers,50.7,55.485,32.729,8969100
+RF,Financial Services,Banks - Regional,29.855,31.53,17.74,14112230
+AWK,Utilities,Utilities - Regulated Water,132.54,155.5,121.28,2169010
+CINF,Financial Services,Insurance - Property & Casualty,165.92,174.27,123.02,786920
+IP,Consumer Cyclical,Packaging & Containers,48.675,57.55,35.56,8701000
+DLTR,Consumer Defensive,Discount Stores,126.8,142.4,61.8,2836510
+VRSK,Industrials,Consulting Services,180.99,322.92,164.6,3362930
+SYF,Financial Services,Credit Services,72.36,88.77,40.545,5334990
+WSM,Consumer Cyclical,Specialty Retail,210.86,221.81,130.07,1040730
+DRI,Consumer Cyclical,Restaurants,217.385,228.27,169.0,1362490
+EXPE,Consumer Cyclical,Travel Services,203.34,303.8,130.01,4123440
+AVB,Real Estate,REIT - Residential,176.41,230.21,166.73,1381690
+FIS,Technology,Information Technology Services,47.73,82.74,46.16,6673770
+STE,Healthcare,Medical Devices,248.03,269.44,204.9,1237050
+EXE,Energy,Oil & Gas E&P,101.565,126.621,91.015,3534320
+CPAY,Technology,Software - Infrastructure,345.53,386.88,252.84,999100
+EQR,Real Estate,REIT - Residential,63.285,75.86,58.38,3564900
+FSLR,Technology,Solar,224.32,285.99,116.56,2367110
+KEY,Financial Services,Banks - Regional,21.715,23.35,12.73,15236480
+CHD,Consumer Defensive,Household & Personal Products,100.635,116.46,81.33,2429620
+GIS,Consumer Defensive,Packaged Foods,44.575,67.35,42.79,7561980
+BRO,Financial Services,Insurance Brokers,69.04,125.68,65.68,4453000
+Q,Technology,Semiconductor Equipment & Materials,111.84,117.69,70.5,2560150
+CTRA,Energy,Oil & Gas E&P,30.89,31.81,22.33,14982230
+CMS,Utilities,Utilities - Regulated Electric,76.44,77.275,67.71,3560560
+EFX,Industrials,Consulting Services,193.75,281.03,166.02,3119840
+VLTO,Industrials,Pollution & Treatment Controls,93.79,110.11,83.865,3157720
+BG,Consumer Defensive,Farm Products,120.07,124.78,68.33,1850620
+AMCR,Consumer Cyclical,Packaging & Containers,49.495,52.25,38.35,7662940
+L,Financial Services,Insurance - Property & Casualty,110.115,114.9,78.98,870910
+DGX,Healthcare,Diagnostics & Research,204.33,213.2,157.2,1457490
+DOW,Basic Materials,Chemicals,31.385,40.09,20.402,15243090
+LH,Healthcare,Diagnostics & Research,269.57,293.72,209.38,724470
+HUM,Healthcare,Healthcare Plans,185.55,315.35,169.61,3093140
+RL,Consumer Cyclical,Apparel Manufacturing,367.955,380.0,176.61,954270
+NI,Utilities,Utilities - Regulated Gas,46.8,47.0487,35.64,5615240
+TSN,Consumer Defensive,Farm Products,62.545,66.41,50.56,2797270
+PKG,Consumer Cyclical,Packaging & Containers,243.65,249.51,172.72,1009800
+LDOS,Technology,Information Technology Services,170.4,205.77,123.62,988440
+SBAC,Real Estate,REIT - Specialty,203.48,245.16,177.49,965290
+OMC,Communication Services,Advertising Agencies,67.87,89.27,66.33,5262010
+CHRW,Industrials,Integrated Freight & Logistics,180.8,203.34,84.68,4156070
+IFF,Basic Materials,Specialty Chemicals,82.43,86.45,59.14,2236090
+JBHT,Industrials,Integrated Freight & Logistics,222.435,234.82,122.79,1488870
+DD,Basic Materials,Specialty Chemicals,50.605,52.66,22.497908,6211910
+NVR,Consumer Cyclical,Residential Construction,7370.81,8618.28,6562.85,27520
+TROW,Financial Services,Asset Management,93.635,118.22,77.85,3131900
+CNC,Healthcare,Healthcare Plans,41.51,66.03,25.08,7872170
+LULU,Consumer Cyclical,Apparel Retail,173.73,374.41,159.25,2262750
+BR,Technology,Information Technology Services,173.01,271.91,163.71,2141560
+INCY,Healthcare,Biotechnology,100.96,112.29,53.56,2174250
+NTAP,Technology,Software - Infrastructure,101.5,127.78,71.84,2459710
+ALB,Basic Materials,Specialty Chemicals,168.97,195.69,49.43,3027860
+SNA,Industrials,Tools & Accessories,381.56,390.13,289.81,496160
+PFG,Financial Services,Asset Management,90.92,97.88,68.39,1760420
+EXPD,Industrials,Integrated Freight & Logistics,147.27,167.19,100.47,2188080
+VRSN,Technology,Software - Infrastructure,214.82,310.6,208.86,1156780
+LII,Industrials,Building Products & Equipment,564.25,689.44,443.19,571560
+WY,Real Estate,REIT - Specialty,26.855,31.66,21.16,7307100
+GPN,Industrials,Specialty Business Services,69.2,107.27,65.93,3843560
+ZBH,Healthcare,Medical Devices,97.14,114.44,84.59,2748070
+CSGP,Real Estate,Real Estate Services,44.755,97.43,43.8,8081630
+EVRG,Utilities,Utilities - Regulated Electric,81.82,83.19,61.94,2121990
+MKC,Consumer Defensive,Packaged Foods,68.79,86.24,59.62,4026240
+LNT,Utilities,Utilities - Regulated Electric,71.37,72.255,57.09,2952290
+SMCI,Technology,Computer Hardware,30.3601,66.44,27.6,42321590
+PTC,Technology,Software - Application,152.345,219.69,133.38,1724700
+VTRS,Healthcare,Drug Manufacturers - Specialty & Generic,15.725,16.3,6.85,11654670
+LYB,Basic Materials,Specialty Chemicals,56.19,78.52,41.58,7009400
+GPC,Consumer Cyclical,Auto Parts,128.0,151.57,104.01,1193890
+BALL,Consumer Cyclical,Packaging & Containers,66.74,68.29,43.51,3188480
+FTV,Technology,Scientific & Technical Instruments,56.95,62.788242,45.504898,6817470
+APTV,Consumer Cyclical,Auto Parts,83.04,88.93,47.19,2411020
+WST,Healthcare,Medical Instruments & Supplies,244.855,322.34,187.43,1350720
+TXT,Industrials,Aerospace & Defense,100.16,100.92,57.7,2194380
+PODD,Healthcare,Medical Devices,247.54,354.88,230.05,1014450
+HPQ,Technology,Computer Hardware,18.775,35.28,18.26,22700090
+HOLX,Healthcare,Medical Instruments & Supplies,75.125,75.36,51.9,2784680
+MRNA,Healthcare,Biotechnology,42.82,55.2,22.28,11049660
+TKO,Communication Services,Entertainment,209.83,218.11,133.07,778120
+NDSN,Industrials,Specialty Industrial Machinery,297.31,300.79,165.03,493500
+INVH,Real Estate,REIT - Residential,26.965,35.799,25.29,6588680
+DECK,Consumer Cyclical,Footwear & Accessories,116.46,156.6,78.91,2849410
+PNR,Industrials,Specialty Industrial Machinery,99.95,113.95,74.25,2787900
+HII,Industrials,Aerospace & Defense,414.0,436.14,164.69,712420
+ESS,Real Estate,REIT - Residential,251.82,316.29,243.25,677240
+CDW,Technology,Information Technology Services,124.74,194.99,120.52,2276790
+COO,Healthcare,Medical Instruments & Supplies,81.89,92.84,61.78,1829590
+AKAM,Technology,Software - Infrastructure,109.635,113.5,67.51,4310590
+J,Industrials,Engineering & Construction,133.74,168.44,105.178215,1391930
+TRMB,Technology,Scientific & Technical Instruments,65.855,87.5,52.91,2976100
+MAA,Real Estate,REIT - Residential,133.96,173.38,125.75,1255200
+IEX,Industrials,Specialty Industrial Machinery,208.57,217.16,153.36,1396940
+MAS,Industrials,Building Products & Equipment,75.91,79.19,56.55,3854320
+KIM,Real Estate,REIT - Retail,22.945,23.09,17.93,5692510
+FFIV,Technology,Software - Infrastructure,271.07,346.0,223.76,695380
+AVY,Consumer Cyclical,Packaging & Containers,194.6499,197.54,156.23,867230
+ERIE,Financial Services,Insurance Brokers,286.685,456.93,267.4,199680
+UHS,Healthcare,Medical Care Facilities,238.03,246.33,152.33,720790
+CLX,Consumer Defensive,Household & Personal Products,122.655,159.04,96.66,2550340
+CF,Basic Materials,Agricultural Inputs,93.645,104.45,67.34,1898010
+HAS,Consumer Cyclical,Leisure,102.4999,106.98,49.0,3051570
+ALLE,Industrials,Security & Protection Services,167.265,183.11,116.57,851040
+BEN,Financial Services,Asset Management,27.205,28.32,16.25,6184550
+SWK,Industrials,Tools & Accessories,90.585,93.37,53.91,2587980
+EG,Financial Services,Insurance - Reinsurance,344.87,370.21,302.44,487100
+REG,Real Estate,REIT - Retail,76.3051,78.18,63.44,1580980
+GEN,Technology,Software - Infrastructure,22.95,32.22,22.14,9037490
+HST,Real Estate,REIT - Hotel & Motel,20.075,20.33,12.22,7704750
+BBY,Consumer Cyclical,Specialty Retail,65.869,91.68,54.99,4122170
+BF.B,,,0.0,0.0,0.0,0
+GNRC,Industrials,Specialty Industrial Machinery,232.385,232.695,99.5,1705890
+ALGN,Healthcare,Medical Instruments & Supplies,187.93,208.31,122.0,1841010
+TYL,Technology,Software - Application,306.46,647.11,283.72,1304220
+HRL,Consumer Defensive,Packaged Foods,23.405,32.07,21.03,4273020
+ZBRA,Technology,Communication Equipment,260.94,352.66,205.73,1039310
+SOLV,Healthcare,Medical Instruments & Supplies,73.4686,88.2,60.7,1097510
+DPZ,Consumer Cyclical,Restaurants,373.9699,500.55,370.7,987650
+BLDR,Industrials,Building Products & Equipment,113.635,153.91,94.35,2711080
+UDR,Real Estate,REIT - Residential,38.041,46.47,32.94,5281660
+TTD,Communication Services,Advertising Agencies,25.46,91.45,24.845,16041630
+PSKY,Communication Services,Entertainment,10.945,20.86,9.95,8478890
+GDDY,Technology,Software - Infrastructure,88.66,193.55,87.13,2102260
+WYNN,Consumer Cyclical,Resorts & Casinos,115.07,134.72,65.25,1970820
+PNW,Utilities,Utilities - Regulated Electric,99.47,100.49,85.32,1200230
+IVZ,Financial Services,Asset Management,26.49,29.61,11.6,7059760
+DOC,Real Estate,REIT - Healthcare Facilities,16.8651,21.28,15.71,12083380
+FOX,Communication Services,Entertainment,51.94,68.175,43.18,2103160
+AES,Utilities,Utilities - Diversified,16.36,16.78,9.46,10825840
+GL,Financial Services,Insurance - Life,144.515,152.71,109.38,556970
+CPT,Real Estate,REIT - Residential,107.809,126.55,97.17,1579810
+JKHY,Technology,Information Technology Services,159.24,196.0,144.12,1491390
+FOXA,Communication Services,Entertainment,57.05,76.39,46.42,5750070
+SJM,Consumer Defensive,Packaged Foods,106.43,121.48,93.3,1698530
+AIZ,Financial Services,Insurance - Property & Casualty,219.92,246.31,174.97,594660
+AOS,Industrials,Specialty Industrial Machinery,79.435,81.87,58.83,1521840
+IT,Technology,Information Technology Services,153.61,517.06,139.18,2952120
+RVTY,Healthcare,Diagnostics & Research,94.79,120.39,81.36,1768650
+NCLH,Consumer Cyclical,Travel Services,23.38,27.41,14.21,23736400
+BAX,Healthcare,Medical Instruments & Supplies,20.489,37.74,17.4,12377940
+DVA,Healthcare,Medical Care Facilities,151.63,158.21,101.0,2124660
+TAP,Consumer Defensive,Beverages - Brewers,51.43,64.66,42.94,3070710
+APA,Energy,Oil & Gas E&P,27.2,28.56,13.58,6568620
+BXP,Real Estate,REIT - Office,60.845,79.33,54.22,3048510
+POOL,Industrials,Industrial Distribution,256.07,374.74,226.1,775420
+SWKS,Technology,Semiconductors,61.9,90.9,47.93,4423010
+TECH,Healthcare,Biotechnology,59.225,72.16,46.01,2906660
+MOS,Basic Materials,Agricultural Inputs,29.145,38.23,22.36,5950660
+ARE,Real Estate,REIT - Office,53.145,105.14,44.1,2235500
+HSIC,Healthcare,Medical Distribution,78.06,82.8,60.56,1364680
+FRT,Real Estate,REIT - Retail,105.33,108.54,80.65,926080
+EPAM,Technology,Information Technology Services,164.34,269.0,138.15,1304800
+CAG,Consumer Defensive,Packaged Foods,18.74,28.52,15.96,13074360
+MGM,Consumer Cyclical,Resorts & Casinos,34.05,40.16,25.3,6276650
+NWSA,Communication Services,Entertainment,22.985,31.61,22.2,6024130
+CPB,Consumer Defensive,Packaged Foods,27.39,43.85,25.62,6302540
+CRL,Healthcare,Diagnostics & Research,158.86,228.88,91.86,1226110
+FDS,Financial Services,Financial Data & Stock Exchanges,190.405,474.79,188.635,1594680
+MTCH,Communication Services,Internet Content & Information,29.78,39.2,26.39,6573290
+MOH,Healthcare,Healthcare Plans,135.1,359.97,121.06,2977920
+PAYC,Technology,Software - Application,122.7575,267.76,104.9,2345380
+LW,Consumer Defensive,Packaged Foods,47.615,67.07,39.79,2593750
+NWS,Communication Services,Entertainment,26.195,35.58,25.49,2110450

@@ -6,7 +6,7 @@ def extrator_acoes(tickers):
     dados_acoes = []
     erro = []
 
-    for ticker in tickers[:1]:
+    for ticker in tickers:
         try:
             acao = yf.Ticker(ticker)
             info = acao.info
@@ -25,5 +25,4 @@ def extrator_acoes(tickers):
             continue
 
     df_acoes = pd.DataFrame(dados_acoes)
-
-    return df_acoes
+    df_acoes.to_csv('dados_acoes.csv', index=False)

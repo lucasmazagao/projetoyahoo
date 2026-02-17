@@ -5,7 +5,7 @@ def extrator_historico(tickers):
     historico_acoes = []
     erro = []
 
-    for ticker in tickers[:1]:
+    for ticker in tickers:
         try:
             acao = yf.Ticker(ticker)
             historico = acao.history(period='5y')
@@ -17,4 +17,4 @@ def extrator_historico(tickers):
             continue
 
     df_historico = pd.concat(historico_acoes)
-    return df_historico
+    df_historico.to_csv('dados_historico.csv', index=True)
