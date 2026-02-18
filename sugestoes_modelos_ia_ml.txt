@@ -1,0 +1,910 @@
+================================================================================
+   SUGESTÕES DE MODELOS DE IA/ML PARA FINANÇAS PREDITIVAS E GERAÇÃO DE SINAIS
+   Projeto: projetoyahoo | S&P 500
+   Data: 18/02/2026
+================================================================================
+
+DADOS DISPONÍVEIS ATUALMENTE:
+- dados_acoes.csv: Símbolo, Setor, Indústria, Preço Atual, Máx/Mín 52 sem, Volume Médio
+- dados_historico.csv: Date, Open, High, Low, Close, Volume, Dividends, Stock Splits, Símbolo (5 anos)
+- Fonte: Yahoo Finance (yfinance) + SlickCharts (tickers S&P 500)
+
+================================================================================
+PARTE 1 — MODELOS DE MACHINE LEARNING TRADICIONAIS
+================================================================================
+
+1.1 RANDOM FOREST CLASSIFIER / REGRESSOR
+    - Uso: Classificação de sinais (COMPRA/VENDA/HOLD) ou regressão de preço
+    - Features: indicadores técnicos (RSI, MACD, Bollinger), retornos passados, volume
+    - Vantagem: robusto, interpretável (feature importance), pouco overfitting
+    - Biblioteca: scikit-learn (RandomForestClassifier, RandomForestRegressor)
+    - Complexidade: ★★☆☆☆
+
+1.2 XGBOOST / LIGHTGBM / CATBOOST (Gradient Boosting)
+    - Uso: previsão de retorno, classificação de direção do preço
+    - Features: indicadores técnicos, dados fundamentalistas, lags temporais
+    - Vantagem: melhor desempenho em dados tabulares, rápido, feature importance
+    - XGBoost: xgboost.XGBClassifier / XGBRegressor
+    - LightGBM: lightgbm.LGBMClassifier (mais rápido, melhor com muitas features)
+    - CatBoost: catboost.CatBoostClassifier (lida nativamente com categóricos como Setor)
+    - Complexidade: ★★☆☆☆
+    - RECOMENDADO como ponto de partida
+
+1.3 SUPPORT VECTOR MACHINES (SVM)
+    - Uso: classificação de direção do preço (up/down)
+    - Features: indicadores técnicos normalizados
+    - Vantagem: bom em espaços de alta dimensionalidade
+    - Desvantagem: lento com muitos dados, sensível à escala
+    - Biblioteca: scikit-learn (SVC, SVR)
+    - Complexidade: ★★☆☆☆
+
+1.4 LOGISTIC REGRESSION (Baseline)
+    - Uso: baseline para comparação, classificação binária (sobe/desce)
+    - Features: retornos, volume, indicadores
+    - Vantagem: rápido, interpretável, coeficientes = importância
+    - Biblioteca: scikit-learn (LogisticRegression)
+    - Complexidade: ★☆☆☆☆
+
+1.5 K-NEAREST NEIGHBORS (KNN)
+    - Uso: classificação por similaridade de padrões de preço
+    - Features: janelas de preço normalizadas
+    - Desvantagem: lento em produção, sensível à escala
+    - Biblioteca: scikit-learn (KNeighborsClassifier)
+    - Complexidade: ★☆☆☆☆
+
+================================================================================
+PARTE 2 — MODELOS DE DEEP LEARNING
+================================================================================
+
+2.1 LSTM (Long Short-Term Memory)
+    - Uso: previsão de séries temporais, captura dependências de longo prazo
+    - Input: sequências de preço/volume (janelas de 30-60 dias)
+    - Arquitetura sugerida: 2 camadas LSTM (128, 64 unidades) + Dense + Dropout
+    - Vantagem: excelente para dados sequenciais financeiros
+    - Desvantagem: caixa-preta, lento para treinar, precisa de muitos dados
+    - Biblioteca: TensorFlow/Keras ou PyTorch
+    - Complexidade: ★★★★☆
+    - JÁ PLANEJADO no ensemble.py
+
+2.2 GRU (Gated Recurrent Unit)
+    - Uso: alternativa mais leve ao LSTM, mesma finalidade
+    - Vantagem: treina mais rápido, menos parâmetros, desempenho similar
+    - Biblioteca: TensorFlow/Keras ou PyTorch
+    - Complexidade: ★★★☆☆
+
+2.3 TRANSFORMER (Temporal Fusion Transformer - TFT)
+    - Uso: previsão multi-horizonte, captura relações complexas
+    - Vantagem: attention mechanism revela quais períodos são importantes
+    - Vantagem: lida com múltiplas séries (todos os tickers juntos)
+    - Biblioteca: pytorch-forecasting (TemporalFusionTransformer)
+    - Alternativa: TimesFM (Google), Chronos (Amazon)
+    - Complexidade: ★★★★★
+    - ESTADO DA ARTE em séries temporais
+
+2.4 CNN 1D (Convolutional Neural Network)
+    - Uso: detecção de padrões locais em séries de preço
+    - Input: janelas de preço como "imagens 1D"
+    - Vantagem: rápido, bom para padrões de curto prazo
+    - Arquitetura: Conv1D + MaxPool + Dense
+    - Pode ser combinado com LSTM (CNN-LSTM)
+    - Biblioteca: TensorFlow/Keras
+    - Complexidade: ★★★☆☆
+
+2.5 AUTOENCODER (Variational)
+    - Uso: detecção de anomalias no mercado, compressão de features
+    - Vantagem: identifica dias "anormais" (crashes, rallies extremos)
+    - Biblioteca: TensorFlow/Keras
+    - Complexidade: ★★★☆☆
+
+2.6 GAN (Generative Adversarial Network) para Finanças
+    - Uso: geração de cenários sintéticos de mercado, data augmentation
+    - Vantagem: simula cenários extremos para stress testing
+    - Desvantagem: difícil de treinar, instável
+    - Biblioteca: TensorFlow/Keras, PyTorch
+    - Complexidade: ★★★★★
+
+================================================================================
+PARTE 3 — MODELOS ESTATÍSTICOS E SÉRIES TEMPORAIS
+================================================================================
+
+3.1 PROPHET (Meta/Facebook)
+    - Uso: decomposição de tendência + sazonalidade + feriados
+    - Vantagem: fácil de usar, interpretável, lida com feriados
+    - Desvantagem: assume linearidade, perde em alta volatilidade
+    - Biblioteca: prophet
+    - Complexidade: ★★☆☆☆
+    - JÁ PLANEJADO no ensemble.py
+
+3.2 ARIMA / SARIMA / SARIMAX
+    - Uso: previsão clássica de séries temporais
+    - ARIMA: AutoRegressive Integrated Moving Average
+    - SARIMA: com sazonalidade
+    - SARIMAX: com variáveis exógenas (volume, indicadores)
+    - Vantagem: robusto, bem estudado, bom baseline
+    - Biblioteca: statsmodels (ARIMA, SARIMAX)
+    - Complexidade: ★★☆☆☆
+
+3.3 GARCH (Generalized Autoregressive Conditional Heteroskedasticity)
+    - Uso: modelagem de VOLATILIDADE (não preço)
+    - Vantagem: essencial para gestão de risco e precificação de opções
+    - Pode ser combinado com ARIMA (ARIMA-GARCH)
+    - Biblioteca: arch
+    - Complexidade: ★★★☆☆
+    - MUITO ÚTIL para sinais baseados em volatilidade
+
+3.4 VAR (Vector AutoRegression)
+    - Uso: modelar relações entre múltiplos ativos simultaneamente
+    - Vantagem: captura como um ativo influencia outro
+    - Biblioteca: statsmodels (VAR)
+    - Complexidade: ★★☆☆☆
+
+3.5 REGIME SWITCHING (Hidden Markov Model - HMM)
+    - Uso: detectar regimes de mercado (bull/bear/sideways)
+    - Vantagem: adapta estratégia ao regime atual
+    - Biblioteca: hmmlearn
+    - Complexidade: ★★★☆☆
+    - MUITO ÚTIL para ajustar pesos do ensemble dinamicamente
+
+================================================================================
+PARTE 4 — MODELOS DE NLP E SENTIMENTO
+================================================================================
+
+4.1 ANÁLISE DE SENTIMENTO COM FINBERT
+    - Uso: classificar notícias financeiras como positivo/negativo/neutro
+    - Modelo: FinBERT (pré-treinado em textos financeiros)
+    - Fonte de dados: notícias, tweets, relatórios
+    - Biblioteca: transformers (HuggingFace), modelo "ProsusAI/finbert"
+    - Complexidade: ★★★☆☆
+    - ALTAMENTE RECOMENDADO como feature adicional
+
+4.2 LLM PARA EXTRAÇÃO DE INSIGHTS
+    - Uso: extrair informações estruturadas de earnings calls, relatórios 10-K
+    - Modelos: GPT-4, Llama, Mistral (via API ou local)
+    - Biblioteca: openai, transformers, llama-cpp-python
+    - Complexidade: ★★★★☆
+
+================================================================================
+PARTE 5 — TÉCNICAS DE ENSEMBLE E COMBINAÇÃO
+================================================================================
+
+5.1 STACKING
+    - Modelos base fazem previsões → meta-modelo aprende a combinar
+    - Meta-modelo sugerido: Logistic Regression ou XGBoost
+    - Biblioteca: scikit-learn (StackingClassifier)
+
+5.2 BLENDING
+    - Similar ao stacking mas usa hold-out set em vez de cross-validation
+    - Mais simples de implementar
+
+5.3 PESOS DINÂMICOS (já esboçado no ensemble.py)
+    - Ajustar pesos dos modelos baseado no regime de mercado
+    - Usar HMM ou volatilidade para detectar regime
+    - Alta volatilidade → mais peso no LSTM
+    - Tendência clara → mais peso no Prophet
+    - Mercado lateral → mais peso no XGBoost
+
+5.4 ENSEMBLE DE SINAIS
+    - Cada modelo gera um sinal independente (-1, 0, +1)
+    - Sinal final = votação ponderada
+    - Só operar quando maioria concorda (consenso ≥ 2/3)
+
+================================================================================
+PARTE 6 — FEATURES E INDICADORES TÉCNICOS PARA CALCULAR
+================================================================================
+
+6.1 INDICADORES DE TENDÊNCIA
+    - SMA (Simple Moving Average) — 20, 50, 200 dias
+    - EMA (Exponential Moving Average) — 12, 26 dias
+    - MACD (Moving Average Convergence Divergence)
+    - ADX (Average Directional Index)
+    - Ichimoku Cloud
+
+6.2 INDICADORES DE MOMENTUM
+    - RSI (Relative Strength Index) — 14 dias
+    - Stochastic Oscillator (%K, %D)
+    - Williams %R
+    - ROC (Rate of Change)
+    - CCI (Commodity Channel Index)
+
+6.3 INDICADORES DE VOLATILIDADE
+    - Bollinger Bands (20 dias, 2 desvios)
+    - ATR (Average True Range)
+    - Desvio padrão histórico
+    - VIX (como feature externa)
+
+6.4 INDICADORES DE VOLUME
+    - OBV (On-Balance Volume)
+    - VWAP (Volume Weighted Average Price)
+    - Chaikin Money Flow
+    - Volume relativo (vs média)
+
+6.5 PADRÕES DE CANDLESTICK
+    - Doji, Hammer, Engulfing, Morning Star, etc.
+    - Biblioteca: TA-Lib (talib) ou ta (technical analysis)
+
+    Bibliotecas recomendadas:
+    - ta (pip install ta) — mais fácil, puro Python
+    - TA-Lib (pip install TA-Lib) — mais completo, requer instalação C
+    - pandas_ta (pip install pandas_ta) — 130+ indicadores
+
+================================================================================
+PARTE 7 — OUTRAS FONTES DE DADOS POSSÍVEIS
+================================================================================
+
+7.1 DADOS FUNDAMENTALISTAS (já parcialmente coletados)
+    Expandir com yfinance:
+    - P/E Ratio, P/B Ratio, EV/EBITDA
+    - Dividend Yield, Payout Ratio
+    - Margem líquida, ROE, ROA
+    - Crescimento de receita, lucro
+    - Dívida/Patrimônio
+    - Free Cash Flow
+    → acao.info já contém muitos desses campos
+
+7.2 DADOS MACROECONÔMICOS
+    Fontes:
+    - FRED (Federal Reserve Economic Data)
+      → Biblioteca: fredapi (pip install fredapi)
+      → Taxa de juros (Fed Funds Rate), inflação (CPI), PIB, desemprego
+      → Curva de juros (yield curve) — inversão = sinal de recessão
+    - World Bank API
+      → Biblioteca: wbdata
+    - OECD Data
+
+7.3 DADOS DE SENTIMENTO E NOTÍCIAS
+    Fontes:
+    - NewsAPI (newsapi.org) — notícias gerais, gratuito limitado
+    - Alpha Vantage — news sentiment endpoint (gratuito com API key)
+    - Finnhub (finnhub.io) — notícias, sentimento, earnings
+    - Reddit API (praw) — subreddits r/wallstreetbets, r/stocks
+    - Twitter/X API — posts sobre tickers
+    - Google Trends — pytrends (interesse público)
+    - SEC Filings — sec-edgar-downloader (relatórios 10-K, 10-Q, 8-K)
+
+7.4 DADOS DE OPÇÕES E DERIVATIVOS
+    Fontes:
+    - yfinance: acao.options, acao.option_chain()
+    - Put/Call Ratio — sentimento do mercado
+    - Implied Volatility — expectativa de movimento
+    - Open Interest — posicionamento do mercado
+    - Max Pain — preço de exercício onde mais opções expiram sem valor
+
+7.5 DADOS ALTERNATIVOS (Alpha Alternativo)
+    Fontes:
+    - Satellite imagery (contagem de carros em estacionamentos)
+    - Dados de cartão de crédito (tendências de consumo)
+    - Web scraping de preços (inflação em tempo real)
+    - Dados de emprego (LinkedIn, Indeed)
+    - App downloads (Sensor Tower, App Annie)
+    - ESG Scores — sustainalytics, MSCI
+    → Maioria requer assinatura paga
+
+7.6 DADOS DE INSIDERS E INSTITUCIONAL
+    Fontes:
+    - SEC EDGAR — Form 4 (insider trading)
+      → Biblioteca: sec-edgar-downloader
+    - 13F Filings — posições de hedge funds
+    - Finviz (finviz.com) — insider trading, ownership
+    - OpenInsider (openinsider.com) — scraping
+
+7.7 DADOS DE MERCADO EM TEMPO REAL / INTRADAY
+    Fontes:
+    - Polygon.io — dados tick-by-tick, WebSocket
+    - Alpaca API — dados gratuitos, permite trading
+    - Interactive Brokers API — ibapi
+    - Binance API (crypto) — python-binance
+    - Twelve Data — dados intraday gratuitos limitados
+
+7.8 ÍNDICES E CORRELAÇÕES
+    - VIX (índice de volatilidade) — medo do mercado
+    - DXY (índice do dólar) — força do dólar
+    - Preço do ouro (GLD), petróleo (USO)
+    - Treasury yields (TNX, TLT)
+    - Bitcoin como indicador de apetite ao risco
+    → Tudo disponível via yfinance com os tickers corretos
+
+================================================================================
+PARTE 8 — MÉTODOS E TÉCNICAS ÚTEIS
+================================================================================
+
+8.1 FEATURE ENGINEERING
+    - Retornos logarítmicos: log(P_t / P_{t-1})
+    - Lags: preço de 1, 5, 10, 21 dias atrás
+    - Rolling statistics: média, desvio, skewness, kurtosis (janela 20 dias)
+    - Razões entre preços: Close/SMA_50, Close/SMA_200
+    - Day of week, month, quarter como features
+    - Distância percentual do máximo/mínimo de 52 semanas (já tem os dados!)
+
+8.2 FEATURE SELECTION
+    - Correlação com target (remover multicolinearidade)
+    - Mutual Information
+    - SHAP Values — explicabilidade do modelo
+    - Boruta — seleção automática baseada em Random Forest
+    - Recursive Feature Elimination (RFE)
+    - Biblioteca: shap, boruta_py
+
+8.3 CROSS-VALIDATION PARA SÉRIES TEMPORAIS
+    - NUNCA usar K-Fold padrão (vazamento de dados do futuro!)
+    - TimeSeriesSplit (scikit-learn) — walk-forward
+    - Expanding Window — treina com todos dados passados
+    - Sliding Window — janela fixa que desliza
+    - Purged Cross-Validation — gap entre treino e teste
+    - Biblioteca: scikit-learn (TimeSeriesSplit)
+
+8.4 BACKTESTING
+    - Simular estratégia em dados históricos
+    - Métricas: Sharpe Ratio, Sortino Ratio, Max Drawdown, Win Rate
+    - Custos de transação (comissão, spread, slippage)
+    - Biblioteca: backtrader, vectorbt, zipline-reloaded, bt
+    - vectorbt é o mais moderno e rápido (vetorizado)
+
+8.5 GESTÃO DE RISCO
+    - Position Sizing: Kelly Criterion, fixed fractional
+    - Stop Loss / Take Profit dinâmicos (baseado em ATR)
+    - Diversificação por setor (dados de setor já disponíveis!)
+    - Value at Risk (VaR) — paramétrico, histórico, Monte Carlo
+    - Maximum Drawdown como critério de parada
+    - Correlação entre posições (não concentrar em ativos correlacionados)
+
+8.6 WALK-FORWARD OPTIMIZATION
+    - Otimizar hiperparâmetros em janela de treino
+    - Testar na janela seguinte
+    - Repetir para toda série temporal
+    - Evita overfitting em backtesting
+
+8.7 DETECÇÃO DE ANOMALIAS
+    - Isolation Forest — detectar dias anômalos
+    - DBSCAN — clustering de padrões de mercado
+    - Z-Score de volume/preço — identificar movimentos incomuns
+    - Útil para filtrar sinais falsos
+
+8.8 REINFORCEMENT LEARNING (Avançado)
+    - Agente aprende a operar maximizando retorno ajustado ao risco
+    - Ambiente: preços históricos como estados
+    - Ações: comprar, vender, manter
+    - Recompensa: retorno ajustado (Sharpe)
+    - Algoritmos: PPO, A2C, DQN
+    - Biblioteca: Stable-Baselines3 + gym/gymnasium
+    - FinRL — framework específico para trading com RL
+    - Complexidade: ★★★★★
+
+8.9 ANÁLISE DE CLUSTERS / REGIME
+    - K-Means para agrupar ações similares
+    - DBSCAN para encontrar grupos naturais
+    - PCA para redução de dimensionalidade antes do clustering
+    - Útil para encontrar pares de ações para pair trading
+
+8.10 CALIBRAÇÃO DE PROBABILIDADE
+    - Modelos de classificação devem ser calibrados
+    - Platt Scaling, Isotonic Regression
+    - Só operar quando probabilidade > threshold (ex: 60%)
+    - Biblioteca: scikit-learn (CalibratedClassifierCV)
+
+================================================================================
+PARTE 9 — PIPELINE SUGERIDO PARA O PROJETO
+================================================================================
+
+FASE 1 — PREPARAÇÃO (Prioridade Alta)
+  [x] Coleta de dados (extratorgeral.py, extratorhist.py)
+  [ ] Calcular indicadores técnicos (ta / pandas_ta)
+  [ ] Feature engineering (retornos, lags, ratios)
+  [ ] Limpeza e normalização (processo.py)
+  [ ] Análise exploratória (lab.ipynb)
+
+FASE 2 — MODELOS BASE (Prioridade Alta)
+  [ ] Baseline: Logistic Regression
+  [ ] XGBoost com indicadores técnicos
+  [ ] LSTM com sequências de preço
+  [ ] Prophet para tendência/sazonalidade
+
+FASE 3 — ENSEMBLE (Prioridade Média)
+  [ ] Combinar modelos com pesos dinâmicos (ensemble.py)
+  [ ] Stacking com meta-modelo
+  [ ] Detecção de regime (HMM) para ajustar pesos
+
+FASE 4 — DADOS EXTRAS (Prioridade Média)
+  [ ] Adicionar dados macroeconômicos (FRED)
+  [ ] Adicionar sentimento (FinBERT + NewsAPI)
+  [ ] Adicionar dados de opções (yfinance)
+  [ ] Adicionar VIX, DXY, ouro como features
+
+FASE 5 — VALIDAÇÃO E RISCO (Prioridade Alta)
+  [ ] Walk-forward cross-validation
+  [ ] Backtesting completo com custos
+  [ ] Métricas: Sharpe, Sortino, Max Drawdown
+  [ ] Gestão de risco e position sizing
+
+FASE 6 — AVANÇADO (Prioridade Baixa)
+  [ ] Transformer (TFT)
+  [ ] Reinforcement Learning (FinRL)
+  [ ] Dados alternativos
+  [ ] Deploy e monitoramento
+
+================================================================================
+PARTE 10 — BIBLIOTECAS PYTHON RECOMENDADAS
+================================================================================
+
+Já em uso:
+  - yfinance          → dados de mercado
+  - pandas            → manipulação de dados
+  - requests          → scraping
+  - beautifulsoup4    → parsing HTML
+
+Para adicionar:
+  ML Clássico:
+  - scikit-learn       → modelos tradicionais, métricas, pipelines
+  - xgboost            → gradient boosting
+  - lightgbm           → gradient boosting (mais rápido)
+  - catboost           → gradient boosting (categóricos nativos)
+
+  Deep Learning:
+  - tensorflow / keras → LSTM, CNN, Transformers
+  - pytorch            → alternativa ao TensorFlow
+  - pytorch-forecasting → Temporal Fusion Transformer
+
+  Séries Temporais:
+  - statsmodels        → ARIMA, SARIMAX, VAR
+  - prophet            → decomposição temporal
+  - arch               → GARCH (volatilidade)
+  - hmmlearn           → Hidden Markov Models
+
+  Indicadores Técnicos:
+  - ta                 → indicadores técnicos (fácil)
+  - pandas_ta          → 130+ indicadores
+  - TA-Lib             → padrão da indústria
+
+  NLP / Sentimento:
+  - transformers       → FinBERT, LLMs
+  - nltk / spacy       → processamento de texto
+
+  Backtesting:
+  - vectorbt           → backtesting vetorizado (rápido)
+  - backtrader         → backtesting event-driven
+  - bt                 → backtesting simples
+
+  Explicabilidade:
+  - shap               → SHAP values
+  - lime               → explicações locais
+
+  Dados Externos:
+  - fredapi            → dados macroeconômicos (FRED)
+  - pytrends           → Google Trends
+  - praw               → Reddit API
+  - newsapi            → notícias
+  - sec-edgar-downloader → SEC filings
+  - finnhub-python     → dados financeiros diversos
+
+  Reinforcement Learning:
+  - stable-baselines3  → algoritmos RL
+  - gymnasium          → ambientes
+  - finrl              → RL para trading
+
+  Visualização:
+  - matplotlib         → gráficos básicos
+  - plotly             → gráficos interativos
+  - mplfinance         → candlestick charts
+
+================================================================================
+PARTE 11 — OS 3 MODELOS RECOMENDADOS PARA ESTE PROJETO
+================================================================================
+
+Após análise dos dados disponíveis (5 anos de OHLCV de ~500 ações do S&P 500,
+dados fundamentalistas por setor/indústria), os 3 modelos abaixo foram escolhidos
+por se COMPLEMENTAREM em fraquezas e forças, formando um ensemble robusto.
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  MODELO 1: XGBOOST (Gradient Boosting)                                    ║
+║  Papel no ensemble: SNIPER DE CURTO PRAZO                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+O QUE FAZ:
+  Recebe uma tabela de features (indicadores técnicos, retornos, volume, setor)
+  e classifica a direção do preço no curto prazo (1-5 dias). Cada árvore corrige
+  os erros da anterior, construindo um modelo extremamente preciso em dados
+  tabulares estruturados — exatamente o tipo de dado que o projeto já tem.
+
+POR QUE ESSE E NÃO OUTRO:
+  É o modelo que mais vence competições com dados tabulares (Kaggle). Diferente
+  de redes neurais, não precisa de GPU nem de milhões de amostras. Com os 5 anos
+  de dados históricos × 500 tickers = ~630.000 linhas, o XGBoost tem dados
+  mais que suficientes. Além disso, o campo "Setor" já disponível no
+  dados_acoes.csv pode ser usado diretamente (via CatBoost) ou com encoding.
+
+VANTAGENS:
+  ✔ Melhor desempenho da indústria em dados tabulares (superado só por LightGBM
+    em velocidade, que é da mesma família)
+  ✔ Feature importance nativa — mostra QUAIS indicadores importam para o sinal
+  ✔ Regularização embutida (L1, L2) — protege contra overfitting
+  ✔ Rápido para treinar e para prever (milissegundos por previsão)
+  ✔ Lida bem com missing values (se alguma ação não tiver todos os dados)
+  ✔ Pode ser usado tanto para classificação (sobe/desce) quanto regressão (retorno %)
+  ✔ SHAP Values disponíveis — explicação completa de cada previsão individual
+  ✔ Fácil de otimizar com Optuna/GridSearch
+
+DESVANTAGENS:
+  ✗ NÃO entende sequências temporais — trata cada linha como independente
+    → precisa de feature engineering manual (lags, rolling, indicadores)
+  ✗ Não captura padrões de longo prazo naturalmente
+  ✗ Pode overficar em dados financeiros ruidosos se não usar regularização
+  ✗ Exige que as features sejam boas — "garbage in, garbage out"
+  ✗ Não gera previsões para múltiplos dias no futuro nativamente
+
+FEATURES IDEAIS PARA O XGBOOST COM SEUS DADOS:
+  Do dados_historico.csv:
+    - Retornos: 1d, 5d, 10d, 21d (log-retornos)
+    - Lags: Close_{t-1}, Close_{t-5}, Close_{t-21}
+    - Rolling: média, desvio, skew, kurtosis (janelas 5, 10, 20, 60)
+    - Indicadores: RSI(14), MACD, Bollinger Bands, ATR, OBV
+    - Volume relativo: Volume / Volume_média_20d
+    - Day of week, month (sazonalidade intra-semana)
+  Do dados_acoes.csv:
+    - Setor, Indústria (categóricos)
+    - Distância do máx/mín 52 semanas (% do preço atual)
+
+COMO COMPLEMENTA OS OUTROS 2:
+  O XGBoost é o "trabalhador" — captura padrões não-lineares locais que o
+  LSTM não vê bem (ruído de curto prazo) e que o GARCH ignora (ele só modela
+  volatilidade). É o modelo com mais capacidade de integrar MUITAS features
+  heterogêneas (preço + volume + setor + macro).
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  MODELO 2: LSTM (Long Short-Term Memory)                                  ║
+║  Papel no ensemble: LEITOR DE PADRÕES SEQUENCIAIS                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+O QUE FAZ:
+  Recebe SEQUÊNCIAS de dados (ex: últimos 60 dias de preço, volume, indicadores)
+  e aprende padrões temporais que se repetem antes de movimentos de preço.
+  Diferente do XGBoost que vê cada dia isolado, o LSTM "lembra" o que aconteceu
+  nos últimos N dias e usa essa memória para prever o próximo movimento.
+
+POR QUE ESSE E NÃO OUTRO:
+  Entre as redes neurais recorrentes, o LSTM é o mais estável e testado em
+  finanças. O GRU é mais simples mas perde capacidade. Transformers (TFT) são
+  superiores em teoria, mas exigem MUITO mais dados e tuning — com 500 tickers
+  × 5 anos, o LSTM está no sweet spot de complexidade vs dados disponíveis.
+  É o modelo que melhor captura "momentum" e "mean reversion" ao longo do tempo.
+
+VANTAGENS:
+  ✔ Entende SEQUÊNCIAS — captura como a evolução dos últimos 30-60 dias
+    influencia o próximo movimento (algo que o XGBoost não faz)
+  ✔ Gates de memória seletiva — aprende a esquecer ruído e lembrar padrões
+  ✔ Captura dependências de longo prazo (semanas/meses anteriores)
+  ✔ Pode prever múltiplos passos à frente (seq2seq)
+  ✔ Funciona bem com dados multivariados (preço + volume + indicadores juntos)
+  ✔ Pode ser treinado por setor (um modelo por setor = mais especializado)
+  ✔ Amplamente estudado em finanças — muita literatura e exemplos disponíveis
+
+DESVANTAGENS:
+  ✗ CAIXA-PRETA — difícil saber POR QUE fez uma previsão
+  ✗ Precisa de GPU para treino razoável (CPU funciona mas é lento)
+  ✗ Muito sensível a hiperparâmetros (nº camadas, unidades, learning rate,
+    dropout, batch size, sequence length)
+  ✗ Propenso a overfitting em dados financeiros ruidosos
+  ✗ Exige normalização cuidadosa (MinMaxScaler ou StandardScaler)
+  ✗ Tempo de treinamento: horas (vs minutos do XGBoost)
+  ✗ Não lida bem com features categóricas (Setor, Indústria)
+  ✗ Requer mais cuidado no walk-forward (não pode misturar futuro no treino)
+
+ARQUITETURA SUGERIDA:
+  Input: sequência de 60 dias × N features
+  → LSTM(128 unidades, return_sequences=True)
+  → Dropout(0.3)
+  → LSTM(64 unidades)
+  → Dropout(0.3)
+  → Dense(32, activation='relu')
+  → Dense(1, activation='sigmoid')   # probabilidade de subir
+  Otimizador: Adam, lr=0.001
+  Loss: binary_crossentropy (classificação) ou mse (regressão)
+  Batch: 32, Epochs: 50-100 com EarlyStopping(patience=10)
+
+COMO COMPLEMENTA OS OUTROS 2:
+  O LSTM captura o que o XGBoost NÃO PODE: a ORDEM dos eventos. Uma queda de
+  3 dias seguida de volume crescente tem significado diferente de volume
+  crescente seguido de queda — o LSTM entende essa diferença, o XGBoost não.
+  E enquanto o GARCH modela só volatilidade, o LSTM modela direção + magnitude.
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  MODELO 3: GARCH (Generalized Autoregressive Conditional Heteroskedast.)  ║
+║  Papel no ensemble: TERMÔMETRO DE RISCO E VOLATILIDADE                    ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+O QUE FAZ:
+  Modela a VOLATILIDADE do ativo, não o preço diretamente. Prevê se o mercado
+  vai ficar mais ou menos volátil nos próximos dias. Isso é fundamental porque:
+  - Alta volatilidade esperada → reduzir posição ou não operar
+  - Baixa volatilidade esperada → aumentar posição com confiança
+  - Mudança brusca de volatilidade → possível reversão de tendência
+  O GARCH é o padrão da indústria financeira para modelagem de risco.
+
+POR QUE ESSE E NÃO PROPHET:
+  O Prophet (que estava no ensemble.py original) decompõe tendência e
+  sazonalidade, mas ASSUME que o preço segue padrões lineares repetitivos.
+  Em ações do S&P 500, essa premissa é fraca — o mercado não repete
+  sazonalidade de forma confiável. O GARCH, por outro lado, modela algo que
+  REALMENTE se repete em finanças: CLUSTERS DE VOLATILIDADE (dias voláteis
+  tendem a ser seguidos por dias voláteis). Esse fenômeno é um dos fatos
+  mais bem documentados em finanças quantitativas. O GARCH transforma o
+  ensemble de "3 modelos tentando prever preço" para "2 modelos preveem
+  direção + 1 modelo controla o RISCO" — que é como fundos quantitativos
+  reais operam.
+
+VANTAGENS:
+  ✔ Modela RISCO, não só retorno — dimensão que XGBoost e LSTM ignoram
+  ✔ Clusters de volatilidade são um dos padrões mais confiáveis em finanças
+  ✔ Fundamentação teórica sólida (Nobel de Economia 2003 — Robert Engle)
+  ✔ Interpretável — parâmetros alpha e beta têm significado claro
+  ✔ Rápido para treinar (segundos por ativo)
+  ✔ Pode gerar intervalos de confiança para as previsões dos outros modelos
+  ✔ Útil para position sizing: investir mais quando volatilidade é baixa
+  ✔ Variantes poderosas: EGARCH (assimetria), GJR-GARCH (efeito alavancagem)
+  ✔ Usado pela indústria real (bancos, hedge funds, gestoras de risco)
+
+DESVANTAGENS:
+  ✗ NÃO prevê direção do preço — só a volatilidade
+    → precisa dos outros 2 modelos para gerar sinal de compra/venda
+  ✗ Assume distribuição dos retornos (normal ou t-Student)
+  ✗ Modelo univariado na forma básica (um ativo por vez)
+  ✗ Pode subestimar eventos extremos (cisnes negros)
+  ✗ Não incorpora features externas facilmente (exceto GARCHX)
+  ✗ Precisa de dados estacionários (usar retornos, não preços)
+
+COMO USAR COM SEUS DADOS:
+  1. Calcular retornos logarítmicos do Close em dados_historico.csv
+  2. Ajustar GARCH(1,1) para cada ticker
+  3. Prever volatilidade condicional para os próximos 1-5 dias
+  4. Usar a volatilidade como:
+     a) Filtro: não operar se volatilidade prevista > threshold
+     b) Position sizing: posição inversamente proporcional à volatilidade
+     c) Ajuste de pesos do ensemble (como no ensemble.py)
+     d) Feature adicional para o XGBoost
+
+COMO COMPLEMENTA OS OUTROS 2:
+  XGBoost diz "provavelmente sobe". LSTM diz "o padrão sequencial confirma".
+  GARCH diz "mas a volatilidade está explodindo, então reduza a posição pela
+  metade". Sem o GARCH, os outros 2 modelos operam cegos ao risco — podem
+  acertar a direção mas tomar um drawdown de 20% num dia de alta volatilidade.
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  LIDANDO COM GAPS NA SÉRIE TEMPORAL (FINAIS DE SEMANA, FERIADOS)          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+RESPOSTA CURTA: NÃO, na maioria dos casos NÃO faz diferença significativa.
+Mas é preciso entender POR QUE e COMO lidar corretamente.
+
+─────────────────────────────────────────────────────────────────────────────
+POR QUE NÃO É UM PROBLEMA GRAVE:
+─────────────────────────────────────────────────────────────────────────────
+
+1. TODOS OS ATIVOS TÊM OS MESMOS GAPS
+   Segunda-feira sempre segue sexta-feira para TODAS as ações. O modelo
+   aprende que "dia após gap de 2 dias" = segunda-feira, e se ajusta.
+   Não há informação perdida — o mercado simplesmente não operou.
+
+2. VOCÊ TRABALHA COM DIAS DE NEGOCIAÇÃO, NÃO CALENDÁRIO
+   Seu dados_historico.csv já está correto: cada linha = 1 dia de pregão.
+   Um lag de 5 dias = 5 dias de negociação = ~1 semana de calendário.
+   Isso é o padrão da indústria — indicadores como RSI(14) são 14 dias
+   de pregão, não 14 dias corridos.
+
+3. OS MODELOS APRENDEM O PADRÃO DE SEGUNDA-FEIRA
+   Existe um fenômeno bem documentado chamado "Monday Effect" — segundas
+   tendem a ter comportamento diferente. Se você adicionar day_of_week
+   como feature, o XGBoost captura isso automaticamente.
+
+4. SÉRIES FINANCEIRAS SÃO TRATADAS COMO "BUSINESS DAYS" POR CONVENÇÃO
+   Bibliotecas como pandas, yfinance, ta-lib já assumem isso. Quando você
+   calcula SMA(20), são 20 pregões, não 20 dias corridos.
+
+─────────────────────────────────────────────────────────────────────────────
+QUANDO PODE SER UM PROBLEMA:
+─────────────────────────────────────────────────────────────────────────────
+
+1. LSTM COM TIMESTAMP ABSOLUTO
+   Se você passar a data como feature numérica (timestamp Unix), o LSTM
+   pode ficar "confuso" com os gaps irregulares. Solução: NÃO use timestamp
+   absoluto. Use apenas a sequência de preços — o LSTM só precisa saber
+   a ORDEM, não a data exata.
+
+2. ANÁLISE DE EVENTOS COM DATA ESPECÍFICA
+   Se você quer modelar "reação ao Fed" que aconteceu numa quarta-feira,
+   precisa alinhar a data do evento com a série. Solução: usar pd.merge
+   com a data como chave, ou criar feature binária "dia_do_fed".
+
+3. COMPARAÇÃO COM DADOS CONTÍNUOS
+   Se você adicionar dados macro diários (ex: taxa de câmbio que opera
+   24/7), haverá dias no macro sem correspondente em ações. Solução:
+   - Usar apenas o valor do fechamento de sexta (forward fill)
+   - Ou agregar o fim de semana (ex: variação total do câmbio no gap)
+
+4. FERIADOS DIFERENTES ENTRE MERCADOS
+   EUA tem feriados diferentes do Brasil. Se misturar B3 com S&P 500,
+   haverá dias onde um operou e outro não. Solução: alinhar pelo menor
+   conjunto (interseção de datas) ou fazer forward fill.
+
+─────────────────────────────────────────────────────────────────────────────
+O QUE FAZER NA PRÁTICA (RECOMENDAÇÕES):
+─────────────────────────────────────────────────────────────────────────────
+
+✅ MANTER COMO ESTÁ (sequência de pregões)
+   Seu CSV está correto. Cada linha = 1 pregão. Não precisa "preencher"
+   sábados e domingos com dados falsos — isso PIORARIA o modelo.
+
+✅ USAR ÍNDICE SEQUENCIAL, NÃO DATA
+   Para o LSTM, use a posição na sequência (0, 1, 2, 3...), não a data.
+   O modelo precisa saber "ontem foi assim, hoje é assim", não "ontem
+   foi 14/02/2025".
+
+✅ ADICIONAR FEATURES DE CALENDÁRIO
+   Para capturar efeitos de dia da semana:
+   ```python
+   df['day_of_week'] = pd.to_datetime(df['Date']).dt.dayofweek
+   df['is_monday'] = (df['day_of_week'] == 0).astype(int)
+   df['is_friday'] = (df['day_of_week'] == 4).astype(int)
+   df['month'] = pd.to_datetime(df['Date']).dt.month
+   df['quarter'] = pd.to_datetime(df['Date']).dt.quarter
+   ```
+
+✅ CALCULAR RETORNOS CORRETAMENTE
+   Retorno de segunda = Close_segunda / Close_sexta - 1
+   Isso já incorpora tudo que aconteceu no fim de semana (notícias,
+   eventos, gaps de abertura). O código abaixo já faz certo:
+   ```python
+   df['return'] = df['Close'].pct_change()  # correto, usa linha anterior
+   ```
+
+✅ CUIDADO COM ROLLING WINDOWS
+   Rolling de 5 dias = 5 pregões = ~1 semana. Está correto.
+   Se quiser 1 semana calendário exata, use rolling('7D'), mas isso
+   raramente é necessário em finanças.
+
+✅ PARA DADOS EXTERNOS COM DATAS DIFERENTES
+   ```python
+   # Dados macro com todas as datas (incluindo fim de semana)
+   df_macro = df_macro.set_index('Date')
+   
+   # Alinhar com datas do mercado, preenchendo gaps
+   df = df.set_index('Date')
+   df = df.join(df_macro, how='left')  # mantém só datas do mercado
+   df = df.fillna(method='ffill')       # usa último valor conhecido
+   ```
+
+─────────────────────────────────────────────────────────────────────────────
+EFEITOS DE FIM DE SEMANA E FERIADOS (FEATURES ÚTEIS):
+─────────────────────────────────────────────────────────────────────────────
+
+Você pode criar features que EXPLORAM os gaps ao invés de ignorá-los:
+
+1. DIAS DESDE ÚLTIMO PREGÃO
+   ```python
+   df['Date'] = pd.to_datetime(df['Date'])
+   df['days_since_last'] = df['Date'].diff().dt.days
+   # Segunda = 3, terça = 1, após feriado = 2+
+   ```
+   
+   Isso captura: segunda-feira tem gap de 3 dias (sáb, dom), terça = 1.
+   Após feriado longo (ex: Thanksgiving) = 4-5 dias. O modelo pode
+   aprender que gaps longos têm comportamento diferente.
+
+2. É PRIMEIRO DIA APÓS FERIADO LONGO?
+   ```python
+   df['after_long_gap'] = (df['days_since_last'] > 3).astype(int)
+   ```
+
+3. É VÉSPERA DE FERIADO?
+   ```python
+   df['before_long_gap'] = (df['days_since_last'].shift(-1) > 3).astype(int)
+   ```
+   Sextas antes de feriado tendem a ter volume baixo e movimento reduzido.
+
+4. RETORNO DO GAP DE ABERTURA (OVERNIGHT + WEEKEND)
+   ```python
+   df['gap_return'] = df['Open'] / df['Close'].shift(1) - 1
+   ```
+   Captura o que aconteceu entre o fechamento anterior e a abertura atual.
+   Em segundas-feiras, isso inclui todas as notícias do fim de semana.
+
+5. RETORNO INTRADAY (SEPARADO DO GAP)
+   ```python
+   df['intraday_return'] = df['Close'] / df['Open'] - 1
+   ```
+   Movimento que aconteceu DURANTE o pregão, sem o gap de abertura.
+
+─────────────────────────────────────────────────────────────────────────────
+RESUMO:
+─────────────────────────────────────────────────────────────────────────────
+
+│ Situação                          │ Ação                              │
+├───────────────────────────────────┼───────────────────────────────────┤
+│ Dados só de pregão (como o seu)   │ ✅ Correto, não precisa mudar    │
+│ LSTM/XGBoost com esses dados      │ ✅ Funciona normalmente          │
+│ Indicadores técnicos (RSI, etc)   │ ✅ Calculados por pregão, ok     │
+│ Adicionar dados macro diários     │ ⚠️ Fazer forward fill no join    │
+│ Misturar mercados com feriados ≠  │ ⚠️ Alinhar pela interseção       │
+│ Usar timestamp como feature       │ ❌ Não faça isso no LSTM         │
+│ Preencher sábado/domingo com 0    │ ❌ Péssima ideia, não faça       │
+
+O mercado não opera no fim de semana, então não há dado a "recuperar".
+Os gaps são INFORMAÇÃO REAL que os modelos podem aprender a usar.
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  COMO OS 3 TRABALHAM JUNTOS                                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────┐
+│                        DADOS HISTÓRICOS                             │
+│               (Open, High, Low, Close, Volume × 5 anos)            │
+└──────────┬──────────────────────┬──────────────────────┬────────────┘
+           │                      │                      │
+     ┌─────▼─────┐         ┌─────▼─────┐         ┌──────▼─────┐
+     │  XGBOOST  │         │   LSTM    │         │   GARCH    │
+     │           │         │           │         │            │
+     │ Features  │         │ Sequência │         │ Retornos   │
+     │ tabulares │         │ de 60 dias│         │ diários    │
+     │           │         │           │         │            │
+     │ Sinal:    │         │ Sinal:    │         │ Output:    │
+     │ +1 / -1   │         │ +1 / -1   │         │ σ (vol)    │
+     │ + prob    │         │ + prob    │         │ prevista   │
+     └─────┬─────┘         └─────┬─────┘         └──────┬─────┘
+           │                      │                      │
+           └──────────┬───────────┘                      │
+                      │                                  │
+              ┌───────▼────────┐                         │
+              │  SINAL FINAL   │◄────────────────────────┘
+              │                │   (GARCH ajusta tamanho
+              │  Votação       │    da posição e filtra
+              │  ponderada     │    dias de alto risco)
+              │  XGB + LSTM    │
+              │                │
+              │  Se ambos      │
+              │  concordam E   │
+              │  vol. ok:      │
+              │  → OPERAR      │
+              │                │
+              │  Se discordam  │
+              │  OU vol. alta: │
+              │  → NÃO OPERAR  │
+              └────────────────┘
+
+LÓGICA DE DECISÃO:
+  1. XGBoost gera sinal (ex: COMPRA com 72% de confiança)
+  2. LSTM gera sinal (ex: COMPRA com 65% de confiança)
+  3. GARCH gera volatilidade prevista (ex: 2.1% ao dia)
+
+  Regra de consenso:
+  - Se XGB e LSTM concordam E ambos > 60% confiança → OPERAR
+  - Se XGB e LSTM discordam → NÃO OPERAR (sinal neutro)
+  - Se volatilidade GARCH > percentil 80 → REDUZIR posição em 50%
+  - Se volatilidade GARCH > percentil 95 → NÃO OPERAR
+
+  Position sizing (quanto investir):
+  - Tamanho base = capital × fração fixa (ex: 2% por trade)
+  - Ajuste de volatilidade = base × (vol_média / vol_prevista)
+  - Se vol prevista 2× a média → posição reduzida pela metade
+
+POR QUE ESSA COMBINAÇÃO É FORTE:
+  ┌──────────────┬───────────┬──────────┬───────────┐
+  │ Dimensão     │ XGBoost   │ LSTM     │ GARCH     │
+  ├──────────────┼───────────┼──────────┼───────────┤
+  │ Prevê        │ Direção   │ Direção  │ Risco     │
+  │ Horizonte    │ Curto     │ Médio    │ Curto     │
+  │ Natureza     │ Tabular   │ Sequenc. │ Estatíst. │
+  │ Interpretab. │ Alta      │ Baixa    │ Alta      │
+  │ Features     │ Muitas    │ Poucas   │ 1 (retor) │
+  │ Velocidade   │ Rápido    │ Lento    │ Rápido    │
+  │ Overfitting  │ Médio     │ Alto     │ Baixo     │
+  │ Base teórica │ Empírica  │ Empírica │ Acadêmica │
+  └──────────────┴───────────┴──────────┴───────────┘
+
+  Não há sobreposição — cada modelo cobre um ponto cego dos outros.
+  XGBoost não entende sequências → LSTM cobre.
+  LSTM não entende risco → GARCH cobre.
+  GARCH não prevê direção → XGBoost e LSTM cobrem.
+
+================================================================================
+FIM DO DOCUMENTO
+================================================================================
