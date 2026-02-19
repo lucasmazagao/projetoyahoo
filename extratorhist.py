@@ -8,8 +8,8 @@ def extrator_historico(tickers):
     for ticker in tickers:
         try:
             acao = yf.Ticker(ticker)
-            historico = acao.history(period='5y')
-            historico['Símbolo'] = ticker
+            historico = acao.history(period='5y', interval='1d')
+            historico['Ticker'] = ticker
             historico_acoes.append(historico)
 
         except Exception as e:

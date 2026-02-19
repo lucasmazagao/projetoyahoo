@@ -3,7 +3,7 @@
 if volatilidade_alta:
     peso_lstm = 0.40      # LSTM lida melhor com caos
     peso_xgboost = 0.35   # XGBoost captura padrões locais
-    peso_prophet = 0.25   # Prophet perde em volatilidade
+    peso_garch = 0.25     # GARCH lida com volatilidade
     
 elif tendencia_clara:
     peso_lstm = 0.30      
@@ -17,8 +17,8 @@ else:
 
 '''
 ┌─────────────────┬──────────────────┬─────────────────┐
-│  Memory Master  │  Feature Hunter  │  Trend Prophet  │
-│     (LSTM)      │    (XGBoost)     │    (Prophet)    │
+│  Memory Master  │  Feature Hunter  │  Trend Prophet   │
+│     (LSTM)      │    (XGBoost)     │     (GARCH)      │
 ├─────────────────┼──────────────────┼─────────────────┤
 │ Sequências      │ Indicadores      │ Sazonalidade    │
 │ temporais       │ técnicos         │ e tendências    │
@@ -29,4 +29,5 @@ else:
 ├─────────────────┼──────────────────┼─────────────────┤
 │ Caixa-preta     │ Interpretável    │ Interpretável   │
 └─────────────────┴──────────────────┴─────────────────┘
+vamos mudar para lstm xgboost e garch?
 '''
