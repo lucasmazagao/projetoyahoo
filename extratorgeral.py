@@ -1,6 +1,5 @@
 import yfinance as yf
 import pandas as pd
-from tickers import tickers_atuais
 
 def extrator_acoes(tickers):
     dados_acoes = []
@@ -10,14 +9,41 @@ def extrator_acoes(tickers):
         try:
             acao = yf.Ticker(ticker)
             info = acao.info
+            
             dados_acoes.append({
-                'Símbolo': ticker,
+                # basicos
+                'Ticker': ticker,
                 'Setor': info.get('sector', ''),
                 'Indústria': info.get('industry', ''),
+                
+                # precos
                 'Preço Atual': info.get('currentPrice', 0),
                 'Preço Máximo 52 Semanas': info.get('fiftyTwoWeekHigh', 0),
                 'Preço Mínimo 52 Semanas': info.get('fiftyTwoWeekLow', 0),
+                
+                # mkt cap
                 'Volume Médio Diário': info.get('averageDailyVolume10Day', 0),
+                'Market Cap': info.get('marketCap', 0),
+                
+                # avaliacoes de mercado
+                'P/L': info.get('trailingPE', None),
+                'P/L Futuro': info.get('forwardPE', None),
+                'P/VP': info.get('priceToBook', None),
+                'PEG Ratio': info.get('pegRatio', None),
+                
+                # rent
+                'Margem Lucro': info.get('profitMargins', None),
+                'ROE': info.get('returnOnEquity', None),
+                'ROA': info.get('returnOnAssets', None),
+                'Crescimento Receita': info.get('revenueGrowth', None),
+                
+                # yield
+                'Dividend Yield': info.get('dividendYield', None),
+                
+                # risco
+                'Beta': info.get('beta', None),
+                'Dívida/Patrimônio': info.get('debtToEquity', None),
+                'Short Ratio': info.get('shortRatio', None),
             })
 
         except Exception as e:
@@ -25,4 +51,4 @@ def extrator_acoes(tickers):
             continue
 
     df_acoes = pd.DataFrame(dados_acoes)
-    df_acoes.to_csv('dados_acoes.csv', index=False)
+    df_acoes.to_csv('dados_fund.csv', index=False)

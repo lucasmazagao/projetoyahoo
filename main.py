@@ -1,7 +1,7 @@
 from extratorgeral import extrator_acoes
 from extratorhist import extrator_historico
 from tickers import tickers_atuais
-from processo import processamento
+from processo import *
 from features import *
 from log import *
 
@@ -36,11 +36,11 @@ def main():
     #2. processamento e limpeza
 
     # vai limpar dados, gerar df_ohlcv
-    processamento()
+    process_serie()
 
     # criação de features para modelos
-    create_features()
-    create_features_2()
+    # create_features()
+    # create_features_2()
 
 
     #3. modelos e análises
