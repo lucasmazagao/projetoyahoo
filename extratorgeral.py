@@ -51,4 +51,4 @@ def extrator_acoes(tickers):
             continue
 
     df_acoes = pd.DataFrame(dados_acoes)
-    df_acoes.to_csv('dados_fund.csv', index=False)
+    df_acoes.to_csv('fund.csv', index=False)
