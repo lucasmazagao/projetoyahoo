@@ -1,3 +1,4 @@
+'''
 # Quando cada modelo tem mais peso (opcional - ajuste dinâmico)
 
 if volatilidade_alta:
@@ -15,7 +16,7 @@ else:
     peso_xgboost = 0.33
     peso_prophet = 0.34
 
-'''
+
 ┌─────────────────┬──────────────────┬─────────────────┐
 │  Memory Master  │  Feature Hunter  │  Trend Prophet   │
 │     (LSTM)      │    (XGBoost)     │     (GARCH)      │
