@@ -1,0 +1,13 @@
+# Dados grandes
+*.csv
+dados_historico.csv
+mk1.csv
+ohlcv5y.csv
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+logs/

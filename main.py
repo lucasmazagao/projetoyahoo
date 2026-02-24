@@ -1,9 +1,10 @@
 from extratorgeral import extrator_acoes
 from extratorhist import extrator_historico
 from tickers import tickers_atuais
-from processo import *
-from features import *
-from log import *
+from processo import process_serie
+from features import features_mk1
+from log import log_inicio, log_etapa, log_info
+from ensemble import treino_mk1
 
 
 def main():
@@ -26,8 +27,8 @@ def main():
     '''
 
     # fazer o log de execução e problemas no futuro
-    # log_inicio()
-
+    log_inicio()
+    
     #1. extração de dados atuais
     tickers = tickers_atuais()
     extrator_acoes(tickers)
@@ -39,11 +40,12 @@ def main():
     process_serie()
 
     # criação de features para modelos
-    # create_features()
+    
+    features_mk1()
     # create_features_2()
 
-
     #3. modelos e análises
+    treino_mk1(tickers)
     
 
 if __name__ == "__main__":

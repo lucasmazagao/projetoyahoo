@@ -23,14 +23,11 @@ logger = logging.getLogger('projetoyahoo')
 # ============================================================
 
 def log_inicio():
-    """Chama no início da execução"""
     logger.info("=" * 50)
-    logger.info("INÍCIO DA EXECUÇÃO")
-    logger.info(f"Log salvo em: {_arquivo_log}")
+    logger.info("Início da execução")
     logger.info("=" * 50)
 
 def log_fim():
-    """Chama no final da execução"""
     logger.info("=" * 50)
     logger.info("FIM DA EXECUÇÃO")
     logger.info("=" * 50)
