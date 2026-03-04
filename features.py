@@ -137,7 +137,7 @@ def features_mk1():
     )
     industria_participacao = industria_participacao[['Date', 'Ticker', 'Industria', 'industria_participacao']]
 
-    ## merges intermediarios
+    # merges intermediarios
     sector_avg = (
         setor.merge(setor_close_sma20, on=['Date', 'Setor'], how='left')
         .merge(setor_vol20, on=['Date', 'Setor'], how='left')
@@ -153,9 +153,18 @@ def features_mk1():
     modelo = modelo.merge(industry_avg, on=['Date', 'Industria'], how='left')
     modelo = modelo.merge(setor_participacao, on=['Date', 'Ticker', 'Setor'], how='left')
     modelo = modelo.merge(industria_participacao, on=['Date', 'Ticker', 'Industria'], how='left')
-    modelo['Target'] = (
-        modelo.groupby('Ticker')['Close'].shift(-1) > modelo['Close']
-    ).astype(int)
+
+    # target
+
+    def calcular_target(df):
+        prox = df['Close'].shift(-1)
+        hoje = df['Close']
+        df['Target'] = 0
+        df.loc[prox > hoje * 1.10, 'Target'] = 1
+        df.loc[prox < hoje * 0.95, 'Target'] = -1
+        return df
+
+    modelo = modelo.groupby('Ticker', group_keys=False).apply(calcular_target)
 
     modelo.to_csv('mk1.csv', index=False)
 

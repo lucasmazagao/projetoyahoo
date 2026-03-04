@@ -1,5 +1,5 @@
 import pandas as pd
-from xgboost import XGBRegressor, XGBClassifier
+from xgboost import XGBClassifier
 from tickers import tickers_atuais
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -14,10 +14,11 @@ def treinamento(df_ticker, ticker):
     y = df['Target']
 
     if len(df) < 10:
+        # logar isso no futuro
         print(f'[{ticker}] dados insuficientes')
         return None
 
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, shuffle=False)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, shuffle=False)
 
     # modelo
     modelo = XGBClassifier(

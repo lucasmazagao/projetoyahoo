@@ -1,0 +1,2 @@
+def backtest(tickers):
+    pass

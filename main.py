@@ -5,6 +5,8 @@ from processo import process_serie
 from features import features_mk1
 from log import log_inicio, log_etapa, log_info
 from ensemble import treino_mk1
+from backtest import backtest
+from validacao import validar
 
 
 def main():
@@ -42,11 +44,15 @@ def main():
     # criação de features para modelos
     
     features_mk1()
-    # create_features_2()
 
     #3. modelos e análises
     treino_mk1(tickers)
-    
+
+    #4. backtesting
+    backtest(tickers)
+
+    #5. analise
+    validar(tickers)
 
 if __name__ == "__main__":
     main()
