@@ -3,56 +3,91 @@ from extratorhist import extrator_historico
 from tickers import tickers_atuais
 from processo import process_serie
 from features import features_mk1
-from log import log_inicio, log_etapa, log_info
-from ensemble import treino_mk1
+from log import log_inicio, log_fim, log_inicio_etapa, log_etapa, log_erro, log_info
+from ensemble import treino_mk1, estrategia
 from backtest import backtest
 from validacao import validar
 
 
 def main():
 
-    ''' criar algo tipo assim no futuro pro log nao ficar baguncado
-    etapas = [
-        "Início da execução",
-        "Extração de tickers atuais",
-        "Extração de dados históricos",
-        "Processamento e limpeza",
-        "Criação de features",
-        "Modelos e análises"
-    ]
     log_inicio()
 
-    for etapa in etapas:
-        log_etapa(etapa)
-        log_info(f"executando {etapa}...") etc
+    #1. obtenção dos tickers
+    log_inicio_etapa("tickers_atuais")
+    try:
+        tickers = tickers_atuais()
+        log_etapa("tickers_atuais", f"{len(tickers)} tickers obtidos")
+    except Exception as e:
+        log_erro("tickers_atuais", e)
+        log_info("execução interrompida: não foi possível obter os tickers")
+        log_fim()
+        return
     
-    '''
+    #2. extracao
+    log_inicio_etapa("extrator_acoes")
+    try:
+        extrator_acoes(tickers)
+        log_etapa("extrator_acoes")
+    except Exception as e:
+        log_erro("extrator_acoes", e)
 
-    # fazer o log de execução e problemas no futuro
-    log_inicio()
-    
-    #1. extração de dados atuais
-    tickers = tickers_atuais()
-    extrator_acoes(tickers)
-    extrator_historico(tickers)
+    log_inicio_etapa("extrator_historico")
+    try:
+        extrator_historico(tickers)
+        log_etapa("extrator_historico")
+    except Exception as e:
+        log_erro("extrator_historico", e)
 
-    #2. processamento e limpeza
+    #3. limpeza e processamento
+    log_inicio_etapa("process_serie")
+    try:
+        process_serie()
+        log_etapa("process_serie")
+    except Exception as e:
+        log_erro("process_serie", e)
 
-    # vai limpar dados, gerar df_ohlcv
-    process_serie()
+    #4. features
+    log_inicio_etapa("features_mk1")
+    try:
+        features_mk1()
+        log_etapa("features_mk1")
+    except Exception as e:
+        log_erro("features_mk1", e)
 
-    # criação de features para modelos
-    
-    features_mk1()
+    #5. modelos
+    log_inicio_etapa("treino_mk1")
+    try:
+        treino_mk1(tickers)
+        log_etapa("treino_mk1")
+    except Exception as e:
+        log_erro("treino_mk1", e)
 
-    #3. modelos e análises
-    treino_mk1(tickers)
+    log_inicio_etapa("estrategia")
+    try:
+        estrategia(tickers)
+        log_etapa("estrategia")
+    except Exception as e:
+        log_erro("estrategia", e)
 
-    #4. backtesting
-    backtest(tickers)
+    #6. backtest
+    log_inicio_etapa("backtest")
+    try:
+        backtest(tickers)
+        log_etapa("backtest")
+    except Exception as e:
+        log_erro("backtest", e)
 
-    #5. analise
-    validar(tickers)
+    #7. validação
+    log_inicio_etapa("validar")
+    try:
+        validar(tickers)
+        log_etapa("validar")
+    except Exception as e:
+        log_erro("validar", e)
+
+    log_fim()
+
 
 if __name__ == "__main__":
     main()

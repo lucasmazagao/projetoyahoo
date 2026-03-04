@@ -1,8 +1,9 @@
 import logging
+import time
 from pathlib import Path
 from datetime import datetime
 
-# Nome do arquivo com data/hora
+Path('logs').mkdir(exist_ok=True)
 _arquivo_log = f'logs/exec_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
 
 # Configurar logger
@@ -18,53 +19,45 @@ logging.basicConfig(
 
 logger = logging.getLogger('projetoyahoo')
 
-# ============================================================
-# FUNÇÕES DE LOG (usar na main.py)
-# ============================================================
+# Armazena tempos de início das etapas para calcular duração
+_tempos: dict[str, float] = {}
 
 def log_inicio():
-    logger.info("=" * 50)
-    logger.info("Início da execução")
-    logger.info("=" * 50)
+    _tempos['__execucao__'] = time.perf_counter()
+    logger.info(f"Execução Inicial — {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+
 
 def log_fim():
-    logger.info("=" * 50)
-    logger.info("FIM DA EXECUÇÃO")
-    logger.info("=" * 50)
+    duracao = time.perf_counter() - _tempos.get('__execucao__', time.perf_counter())
+    logger.info(f"Execução Final — tempo total: {duracao:.1f}s")
+
+
+def log_inicio_etapa(nome: str):
+    _tempos[nome] = time.perf_counter()
+    logger.info(f"{nome} — iniciado")
+
 
 def log_etapa(nome: str, detalhe: str = None):
-    """Registra uma etapa concluída
+    duracao = ""
+    if nome in _tempos:
+        elapsed = time.perf_counter() - _tempos.pop(nome)
+        duracao = f" ({elapsed:.1f}s)"
+
+    msg = f"{nome}{duracao}"
     
-    Uso:
-        log_etapa("extrator_acoes")
-        log_etapa("tickers", "503 encontrados")
-    """
     if detalhe:
-        logger.info(f"✔ {nome} — {detalhe}")
-    else:
-        logger.info(f"✔ {nome}")
+        msg += f" — {detalhe}"
+    logger.info(msg)
+
 
 def log_erro(nome: str, erro: Exception):
-    """Registra um erro
-    
-    Uso:
-        except Exception as e:
-            log_erro("extrator_acoes", e)
-    """
-    logger.error(f"✖ {nome} — {erro}")
+    _tempos.pop(nome, None)
+    logger.error(f"{nome} — {type(erro).__name__}: {erro}")
+
 
 def log_aviso(mensagem: str):
-    """Registra um aviso (não fatal)
-    
-    Uso:
-        log_aviso("Ticker BRK.B não encontrado, pulando")
-    """
-    logger.warning(f"⚠ {mensagem}")
+    logger.warning(f"{mensagem}")
+
 
 def log_info(mensagem: str):
-    """Registra informação genérica
-    
-    Uso:
-        log_info("Iniciando extração...")
-    """
-    logger.info(mensagem)
+    logger.info(f"{mensagem}")

@@ -1,9 +1,10 @@
 import yfinance as yf
 import pandas as pd
+from log import log_aviso, log_info
 
 def extrator_acoes(tickers):
     dados_acoes = []
-    erro = []
+    erros = []
 
     for ticker in tickers:
         try:
@@ -47,8 +48,14 @@ def extrator_acoes(tickers):
             })
 
         except Exception as e:
-            erro.append(ticker)
+            erros.append(ticker)
+            log_aviso(f"extrator_acoes — falha em {ticker}: {e}")
             continue
+
+    if erros:
+        log_aviso(f"extrator_acoes — {len(erros)} ticker(s) com erro: {erros}")
+
+    log_info(f"extrator_acoes — {len(dados_acoes)} ações extraídas com sucesso")
 
     df_acoes = pd.DataFrame(dados_acoes)
     df_acoes.to_csv('fund.csv', index=False)

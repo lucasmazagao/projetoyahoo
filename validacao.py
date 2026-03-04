@@ -1,2 +1,2 @@
-def validar():
+def validar(tickers):
     pass

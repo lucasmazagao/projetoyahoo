@@ -3,6 +3,7 @@ from xgboost import XGBClassifier
 from tickers import tickers_atuais
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from log import log_aviso, log_info
 
 def treinamento(df_ticker, ticker):
     df = df_ticker.dropna().copy()
@@ -13,19 +14,26 @@ def treinamento(df_ticker, ticker):
     x = df[feature_cols]
     y = df['Target']
 
-    if len(df) < 10:
-        # logar isso no futuro
-        print(f'[{ticker}] dados insuficientes')
+    if len(df) < 50:
+        log_aviso(f"treinamento — [{ticker}] dados insuficientes ({len(df)} linhas), ticker ignorado")
         return None
 
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, shuffle=False)
 
     # modelo
     modelo = XGBClassifier(
-        n_estimators=100,
+        n_estimators=300,
         max_depth=3,
-        learning_rate=0.1
+        learning_rate=0.05,
+        subsample=0.8,
+        colsample_bytree=0.7,
+        min_child_weight=10,
+        reg_alpha=0.05,
+        reg_lambda=1.0,
+        eval_metric='logloss',
+        random_state=42
     )
+
     modelo.fit(x_train, y_train)
 
     # acurácia no conjunto de teste
@@ -54,6 +62,7 @@ def treinamento(df_ticker, ticker):
 def treino_mk1(tickers):
     df = pd.read_csv('mk1.csv')
     resultados = []
+    erros = []
 
     for ticker in tickers:
         try:
@@ -64,8 +73,33 @@ def treino_mk1(tickers):
                 resultados.append(df_res)
 
         except Exception as e:
-            print(f"Erro no ticker {ticker}: {e}")
+            erros.append(ticker)
+            log_aviso(f"treino_mk1 — erro no ticker {ticker}: {e}")
+
+    if erros:
+        log_aviso(f"treino_mk1 — {len(erros)} ticker(s) com falha: {erros}")
 
     if resultados:
         df_previsoes = pd.concat(resultados, ignore_index=True)
         df_previsoes.to_csv('previsoes_mk1.csv', index=False)
+        log_info(f"treino_mk1 — {len(resultados)} modelos treinados | previsoes_mk1.csv salvo")
+    else:
+        log_aviso("treino_mk1 — nenhum resultado gerado")
+
+
+def estrategia(df_previsoes):
+    buy_flags = []
+    sell_flags = []
+
+    for ticker in df_previsoes['Ticker'].unique():
+        if df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['previsao'] == 1 and df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['probabilidade'] >= 0.7:
+            buy_flags.append(ticker)
+        elif df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['previsao'] == 0 and df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['probabilidade'] >= 0.7:
+            sell_flags.append(ticker)
+    
+    df_estrategia = pd.DataFrame({
+        'Ticker': df_previsoes['Ticker'].unique(),
+        'Flag': ['1' if ticker in buy_flags else '-1' if ticker in sell_flags else '0' for ticker in df_previsoes['Ticker'].unique()]
+    })
+    
+    df_estrategia.to_csv('estrategia_mk1.csv', index=False)

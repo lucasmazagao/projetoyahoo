@@ -1,4 +1,6 @@
 import pandas as pd
+from log import log_info, log_aviso
+
 # features modelo 1
 
 def features_mk1():
@@ -158,15 +160,20 @@ def features_mk1():
 
     def calcular_target(df):
         prox = df['Close'].shift(-1)
-        hoje = df['Close']
-        df['Target'] = 0
-        df.loc[prox > hoje * 1.10, 'Target'] = 1
-        df.loc[prox < hoje * 0.95, 'Target'] = -1
+        df['Target'] = (prox > df['Close']).astype(int)
         return df
 
     modelo = modelo.groupby('Ticker', group_keys=False).apply(calcular_target)
 
     modelo.to_csv('mk1.csv', index=False)
+
+    tickers_unicos = modelo['Ticker'].nunique()
+    total_features = len([c for c in modelo.columns if c not in ('Date', 'Ticker', 'Setor', 'Industria', 'Target')])
+    log_info(f"features_mk1 — {tickers_unicos} tickers | {total_features} features geradas | {len(modelo)} linhas")
+
+    nulos = modelo.isnull().sum().sum()
+    if nulos:
+        log_aviso(f"features_mk1 — {nulos} valor(es) nulo(s) no dataset final (esperado para janelas de rolling)")
 
 # features modelo 2
 
