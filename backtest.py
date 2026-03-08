@@ -1,17 +1,23 @@
 import pandas as pd
 from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split
 
-# ── parâmetros walk-forward ──────────────────────────────────
-JANELA_TREINO_DIAS = 252   # ~1 ano mínimo para treinar
-JANELA_RETREINO_DIAS = 63  # retreina a cada ~1 trimestre
-# ─────────────────────────────────────────────────────────────
+def treinamento(df_ticker, ticker):
+    df = df_ticker.dropna().copy()
 
-hoje = pd.to_datetime('today').date()
-data_corte = hoje - pd.tseries.offsets.BDay(100)
+    eliminar_cols = ['Date', 'Ticker', 'Setor', 'Industria', 'Target']
+    feature_cols = [c for c in df.columns if c not in eliminar_cols]
 
+    x = df[feature_cols]
+    y = df['Target']
 
-def _modelo_xgb():
-    return XGBClassifier(
+    if len(df) < 100:
+        return None
+
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, shuffle=False)
+
+    # modelo
+    modelo = XGBClassifier(
         n_estimators=300,
         max_depth=3,
         learning_rate=0.05,
@@ -24,79 +30,150 @@ def _modelo_xgb():
         random_state=42
     )
 
+    modelo.fit(x_train, y_train)
 
-def treino_bkt(df_ticker, ticker):
-    eliminar_cols = ['Date', 'Ticker', 'Setor', 'Industria', 'Target']
-    feature_cols  = [c for c in df_ticker.columns if c not in eliminar_cols]
+    # predição do próximo dia útil
+    ultima_linha = x.iloc[[-1]]
+    ultima_data  = pd.to_datetime(df['Date'].iloc[-1])
+    proxima_data = ultima_data + pd.tseries.offsets.BDay(1)
 
-    df = df_ticker.dropna().reset_index(drop=True)
+    previsao = modelo.predict(ultima_linha)[0]
+    prob = modelo.predict_proba(ultima_linha)[0]
 
-    if len(df) < JANELA_TREINO_DIAS + JANELA_RETREINO_DIAS:
-        return None
+    df_resultado = pd.DataFrame({
+        'Date': [proxima_data.strftime('%Y-%m-%d')],
+        'Ticker': [ticker],
+        'previsao': [int(previsao)],
+        'probabilidade': [round(prob[1], 4)]
+    })
 
-    resultados = []
-    inicio = JANELA_TREINO_DIAS
-
-    while inicio < len(df):
-        fim = min(inicio + JANELA_RETREINO_DIAS, len(df))
-
-        treino = df.iloc[:inicio]
-        teste  = df.iloc[inicio:fim]
-
-        modelo = _modelo_xgb()
-        modelo.fit(treino[feature_cols], treino['Target'])
-
-        probs    = modelo.predict_proba(teste[feature_cols])[:, 1]
-        previsao = modelo.predict(teste[feature_cols])
-
-        bloco = pd.DataFrame({
-            'Date':          teste['Date'].values,
-            'Ticker':        ticker,
-            'Close':         teste['Close'].values,
-            'previsao':      previsao,
-            'probabilidade': probs.round(4),
-        })
-        resultados.append(bloco)
-
-        inicio = fim
-
-    return pd.concat(resultados, ignore_index=True)
+    return df_resultado
 
 
-def treino_mk1_bkt(tickers):
+def treino_mk1(tickers, inicio):
     df = pd.read_csv('mk1.csv')
-    df = df[df['Date'] <= str(data_corte)].copy()
+    df = df[df['Date'] <= inicio].copy()
+
     resultados = []
 
     for ticker in tickers:
-        df_ticker = df.loc[df['Ticker'] == ticker].copy()
-        df_res = treino_bkt(df_ticker, ticker)
+        try:
+            df_ticker = df.loc[df['Ticker'] == ticker].copy()
+            df_res = treinamento(df_ticker, ticker)
 
-        if df_res is not None:
-            resultados.append(df_res)
+            if df_res is not None:
+                resultados.append(df_res)
 
-    if not resultados:
-        return None
+        except:
+            pass
 
-    df_sinais = pd.concat(resultados, ignore_index=True)
-    return df_sinais
+    if resultados:
+        df_previsoes = pd.concat(resultados, ignore_index=True)
+        return df_previsoes
 
-def estrategia_bkt(df_previsoes):
-    buy_flags = []
+def estrategia(df_previsoes):
+    ultimo_dia = df_previsoes['Date'].max()
+    df_ultimo  = df_previsoes[df_previsoes['Date'] == ultimo_dia]
+
+    buy_flags  = []
     sell_flags = []
 
-    for ticker in df_previsoes['Ticker'].unique():
-        if df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['previsao'] == 1 and df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['probabilidade'] >= 0.7:
-            buy_flags.append(ticker)
-        elif df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['previsao'] == 0 and df_previsoes[df_previsoes['Ticker'] == ticker].iloc[-1]['probabilidade'] >= 0.7:
-            sell_flags.append(ticker)
-    
+    for _, row in df_ultimo.iterrows():
+        if row['previsao'] == 1 and row['probabilidade'] >= 0.7:
+            buy_flags.append(row['Ticker'])
+        elif row['previsao'] == 0 and row['probabilidade'] >= 0.7:
+            sell_flags.append(row['Ticker'])
+
     df_estrategia = pd.DataFrame({
-        'Ticker': df_previsoes['Ticker'].unique(),
-        'Flag': ['1' if ticker in buy_flags else '-1' if ticker in sell_flags else '0' for ticker in df_previsoes['Ticker'].unique()]
+        'Ticker': df_ultimo['Ticker'].values,
+        'Flag': [
+            '1'  if t in buy_flags  else
+            '-1' if t in sell_flags else
+            '0'
+            for t in df_ultimo['Ticker'].values
+        ]
     })
 
     return df_estrategia
+
+def efetivar_estrategia(backtest_resultados, df_estrategia, capital, posicoes, inicio):
+    """
+    Executa as ordens do dia `inicio` e registra o resultado no histórico.
+
+    Parâmetros
+    ----------
+    backtest_resultados : pd.DataFrame  — histórico acumulado dos dias anteriores
+    df_estrategia       : pd.DataFrame  — flags do dia (colunas: Ticker, Flag)
+    capital             : float         — caixa disponível antes das ordens do dia
+    posicoes            : dict          — estado da carteira:
+                                          { ticker: {'qtd': float, 'preco_entrada': float} }
+    inicio              : pd.Timestamp  — data do dia sendo processado
+
+    Retorna
+    -------
+    (backtest_resultados, capital, posicoes) atualizados
+    """
+    ALOCACAO = 0.10  # 10% do capital disponível por compra
+
+    # preços de fechamento do dia para todos os tickers com sinal
+    df_mk1 = pd.read_csv('mk1.csv')
+    df_mk1['Date'] = pd.to_datetime(df_mk1['Date'])
+    precos_dia = (
+        df_mk1[df_mk1['Date'] == inicio]
+        .set_index('Ticker')['Close']
+        .to_dict()
+    )
+
+    # --- executa as ordens ---
+    for _, row in df_estrategia.iterrows():
+        ticker = row['Ticker']
+        flag   = int(row['Flag'])
+        preco  = precos_dia.get(ticker)
+
+        if preco is None or preco <= 0:
+            continue
+
+        if flag == 1 and ticker not in posicoes:
+            # compra: abre posição com 10% do capital disponível
+            valor_aloc = capital * ALOCACAO
+            if valor_aloc > 0:
+                qtd = valor_aloc / preco
+                posicoes[ticker] = {'qtd': qtd, 'preco_entrada': preco}
+                capital -= valor_aloc
+
+        elif flag == -1 and ticker in posicoes:
+            # venda: fecha posição e devolve ao caixa
+            pos     = posicoes.pop(ticker)
+            receita = pos['qtd'] * preco
+            capital += receita
+
+    # --- mark-to-market: reavalia posições abertas com o Close do dia ---
+    valor_carteira = sum(
+        pos['qtd'] * precos_dia.get(tk, pos['preco_entrada'])
+        for tk, pos in posicoes.items()
+    )
+
+    total = capital + valor_carteira
+
+    # variação percentual em relação ao dia anterior
+    if not backtest_resultados.empty:
+        total_anterior = backtest_resultados['Total'].iloc[-1]
+        shift = round((total - total_anterior) / total_anterior * 100, 4) if total_anterior else 0.0
+    else:
+        shift = 0.0
+
+    nova_linha = pd.DataFrame([{
+        'Date':     inicio,
+        'Capital':  round(capital, 2),
+        'Carteira': round(valor_carteira, 2),
+        'Total':    round(total, 2),
+        'Shift':    shift,
+    }])
+
+    backtest_resultados = pd.concat([backtest_resultados, nova_linha], ignore_index=True)
+
+    return backtest_resultados, capital, posicoes
+
 
 def backtest(tickers):
     # primeiro eliminar 100 ultimos dias
@@ -107,16 +184,30 @@ def backtest(tickers):
     # registrar valor para cada posicao comprada, para calcular o valor da carteira a cada dia
     # no final do periodo de backtest, calcular o retorno total
 
-    df_previsoes = treino_mk1_bkt(tickers)
+    hoje   = pd.Timestamp('today').normalize()
+    inicio = hoje - pd.tseries.offsets.BDay(100)
 
-    df_estrategia = estrategia_bkt(df_previsoes)
+    capital  = 100_000.0
+    posicoes = {}   # { ticker: {'qtd': float, 'preco_entrada': float} }
 
-    capital = 100000
+    backtest_resultados = pd.DataFrame(columns=['Date', 'Capital', 'Carteira', 'Total', 'Shift'])
 
-    backtest_resultados = pd.DataFrame({
-        'Date': [],
-        'Capital': [],
-        'Carteira': [],
-        'Total': [],
-        'Shift': []
-    })
+    while inicio <= hoje:
+        df_previsoes = treino_mk1(tickers, inicio)
+
+        if df_previsoes is None or df_previsoes.empty:
+            inicio += pd.tseries.offsets.BDay(1)
+            continue
+
+        df_estrategia = estrategia(df_previsoes)
+
+        backtest_resultados, capital, posicoes = efetivar_estrategia(
+            backtest_resultados, df_estrategia, capital, posicoes, inicio
+        )
+
+        inicio += pd.tseries.offsets.BDay(1)
+
+    retorno_total = round((backtest_resultados['Total'].iloc[-1] / 100_000.0 - 1) * 100, 2)
+    print(f"Retorno total no período: {retorno_total}%")
+
+    return backtest_resultados
