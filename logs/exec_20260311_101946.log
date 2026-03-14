@@ -1,0 +1,33 @@
+2026-03-11 10:19:46 | INFO | Execução Inicial — 11/03/2026 10:19:46
+2026-03-11 10:19:46 | INFO | tickers_atuais — iniciado
+2026-03-11 10:19:47 | INFO | tickers_atuais — 503 tickers obtidos
+2026-03-11 10:19:47 | INFO | tickers_atuais (0.3s) — 503 tickers obtidos
+2026-03-11 10:19:47 | INFO | extrator_acoes — iniciado
+2026-03-11 10:23:13 | INFO | extrator_acoes — 503 ações extraídas com sucesso
+2026-03-11 10:23:13 | INFO | extrator_acoes (206.1s)
+2026-03-11 10:23:13 | INFO | extrator_historico — iniciado
+2026-03-11 10:23:15 | ERROR | $BRK.B: possibly delisted; no price data found  (period=5y) (Yahoo error = "No data found, symbol may be delisted")
+2026-03-11 10:24:30 | ERROR | $BF.B: possibly delisted; no price data found  (period=5y)
+2026-03-11 10:24:36 | INFO | extrator_historico — 503 séries históricas obtidas
+2026-03-11 10:24:39 | INFO | extrator_historico (85.9s)
+2026-03-11 10:24:39 | INFO | process_serie — iniciado
+2026-03-11 10:24:41 | INFO | process_serie — 623081 linhas limpas | 501 tickers
+2026-03-11 10:24:41 | INFO | process_serie (2.7s)
+2026-03-11 10:24:41 | INFO | features_mk1 — iniciado
+2026-03-11 10:24:52 | INFO | features_mk1 — 501 tickers | 27 features geradas | 623081 linhas
+2026-03-11 10:24:52 | WARNING | features_mk1 — 269092 valor(es) nulo(s) no dataset final (esperado para janelas de rolling)
+2026-03-11 10:24:52 | INFO | features_mk1 (10.6s)
+2026-03-11 10:24:52 | INFO | treino_mk1 — iniciado
+2026-03-11 10:24:55 | WARNING | treinamento — [BRK.B] dados insuficientes (0 linhas), ticker ignorado
+2026-03-11 10:25:58 | WARNING | treinamento — [FISV] dados insuficientes (0 linhas), ticker ignorado
+2026-03-11 10:26:09 | WARNING | treinamento — [Q] dados insuficientes (0 linhas), ticker ignorado
+2026-03-11 10:26:34 | WARNING | treinamento — [BF.B] dados insuficientes (0 linhas), ticker ignorado
+2026-03-11 10:26:43 | INFO | treino_mk1 — 499 modelos treinados | previsoes_mk1.csv salvo
+2026-03-11 10:26:43 | INFO | treino_mk1 (110.7s)
+2026-03-11 10:26:43 | INFO | estrategia — iniciado
+2026-03-11 10:26:43 | ERROR | estrategia — TypeError: list indices must be integers or slices, not str
+2026-03-11 10:26:43 | INFO | backtest — iniciado
+2026-03-11 10:26:44 | ERROR | backtest — TypeError: '<=' not supported between instances of 'str' and 'Timestamp'
+2026-03-11 10:26:44 | INFO | validar — iniciado
+2026-03-11 10:26:44 | INFO | validar (0.0s)
+2026-03-11 10:26:44 | INFO | Execução Final — tempo total: 417.5s

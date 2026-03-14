@@ -96,6 +96,9 @@ def estrategia(df_previsoes):
 
     return df_estrategia
 
+
+## vamos precisar trocar para ter uma planilha de carteira e outra de retornos(talvez)
+
 def efetivar_estrategia(backtest_resultados, df_estrategia, capital, posicoes, inicio):
     """
     Executa as ordens do dia `inicio` e registra o resultado no histórico.
