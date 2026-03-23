@@ -100,22 +100,6 @@ def estrategia(df_previsoes):
 ## vamos precisar trocar para ter uma planilha de carteira e outra de retornos(talvez)
 
 def efetivar_estrategia(backtest_resultados, df_estrategia, capital, posicoes, inicio):
-    """
-    Executa as ordens do dia `inicio` e registra o resultado no histórico.
-
-    Parâmetros
-    ----------
-    backtest_resultados : pd.DataFrame  — histórico acumulado dos dias anteriores
-    df_estrategia       : pd.DataFrame  — flags do dia (colunas: Ticker, Flag)
-    capital             : float         — caixa disponível antes das ordens do dia
-    posicoes            : dict          — estado da carteira:
-                                          { ticker: {'qtd': float, 'preco_entrada': float} }
-    inicio              : pd.Timestamp  — data do dia sendo processado
-
-    Retorna
-    -------
-    (backtest_resultados, capital, posicoes) atualizados
-    """
     ALOCACAO = 0.10  # 10% do capital disponível por compra
 
     # preços de fechamento do dia para todos os tickers com sinal
